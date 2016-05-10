@@ -1,0 +1,32 @@
+/* http://www.colourlovers.com/palette/151113/blue_jay_feather */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+h2 {
+    font: bold 28px Helvetica, Verdana, sans-serif;
+    padding: 8px 0 15px 0;
+    color: #606D80;
+}
+
+ul {
+    max-width: 940px;
+    margin: 0 auto;
+}
+
+li {
+    list-style-type: none;
+    border-left: 8px #2B4C7E solid;
+    padding: 16px;
+    margin-bottom: 16px;
+    margin-top: 16px
+}
+
+p {
+    margin-bottom: 12px;
+    line-height: 138%;
+    letter-spacing: 0.4px;
+}
