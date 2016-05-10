@@ -1,4 +1,2 @@
-Antagonista
-======
-
-Site do antagonista, sem o "Ver mais..."
+# antagonista
+O Antagonista, sem o "leia mais..."
