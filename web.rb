@@ -2,8 +2,12 @@ require 'sinatra'
 require './anta'
 
 get '/' do
-    @html = Anta.new.html
-    erb :anta
+    redirect '/pagina/1'
+end
+
+get '/pagina/:num' do
+    @html = Pagina.new(params[:num]).html
+    erb :main
 end
 
 get '/posts/:id' do
