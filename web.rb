@@ -6,3 +6,6 @@ get '/' do
     erb :anta
 end
 
+get '/posts/:id' do
+    Noticia.new("/posts/#{params[:id]}").html
+end

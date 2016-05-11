@@ -2,20 +2,21 @@ require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
 
+URL = "http://www.oantagonista.com/"
+
 class Anta
-    @@url = "http://www.oantagonista.com/"
 
     attr_reader :html
 
     def initialize
         begin
-            @page = Nokogiri::HTML(open(@@url).read, nil, "UTF-8")
+            @page = Nokogiri::HTML(open(URL).read, nil, "UTF-8")
             @html = []
 
             articles = @page.xpath("//article")
             articles.each do |article|
                 path = article.css("a")[0]['href']
-                @html << "<h2>#{article.css('h3').text}</h2>" + extrai_conteudo_noticia(path.to_s)
+                @html << "<h2>#{article.css('h3').text}</h2>" + Noticia.new(path.to_s).html
             end
 
         rescue OpenURI::HTTPError => httpe
@@ -24,23 +25,14 @@ class Anta
         end
     end
 
-    def extrai_conteudo_noticia(path)
-        html = Nokogiri::HTML(open(@@url + path).read, nil, "UTF-8")
-        html.xpath("//div[@class='l-main-right']/p").to_s
+end
+
+
+class Noticia
+    attr_reader :html
+
+    def initialize(path)
+        page = Nokogiri::HTML(open(URL + path).read, nil, "UTF-8")
+        @html = page.xpath("//div[@class='l-main-right']/p").to_s   # carrega o conteúdo da notícia
     end
-
-
-    def conteudo_noticias(links)
-        threads = []
-        result = []
-
-        links.each do |news|
-            threads << Thread.new(episode) do |ep|
-                result << episode.populate!
-            end
-        end
-        threads.each {|t| t.join}
-        result
-    end
-
 end
