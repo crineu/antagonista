@@ -14,12 +14,11 @@ class Pagina
 
             artigos = @page.xpath("//article")
             artigos.each do |article|
-                path =   article.css("a")[0]['href']
-                titulo = article.css('h3').text
-                html  = "<h2>#{titulo}</h2>"
-                html += "<button action='#{path}'>carregar notícia</button>"\
+                data = {}
+                data[:path]  = article.css("a")[0]['href']
+                data[:title] = article.css('h3').text
 
-                @html << html
+                @html << data
             end
 
         rescue OpenURI::HTTPError => httpe
