@@ -4,23 +4,27 @@ require 'open-uri'
 
 URL = "http://www.oantagonista.com/"
 
-class Anta
-
+class Pagina
     attr_reader :html
 
-    def initialize
+    def initialize(pagina = 1)
         begin
-            @page = Nokogiri::HTML(open(URL).read, nil, "UTF-8")
+            @page = Nokogiri::HTML(open(URL + "/pagina/#{pagina}").read, nil, "UTF-8")
             @html = []
 
-            articles = @page.xpath("//article")
-            articles.each do |article|
-                path = article.css("a")[0]['href']
-                @html << "<h2>#{article.css('h3').text}</h2>" + Noticia.new(path.to_s).html
+            artigos = @page.xpath("//article")
+            artigos.each do |article|
+                path =   article.css("a")[0]['href']
+                titulo = article.css('h3').text
+                html  = "<h2>#{titulo}</h2>"
+                html += "<button action='#{path}'>carregar notícia</button>"\
+
+                @html << html
             end
 
         rescue OpenURI::HTTPError => httpe
-            puts "HTTPError maldito"
+            puts "HTTPError..."
+            @html = ""
             return
         end
     end
@@ -32,7 +36,13 @@ class Noticia
     attr_reader :html
 
     def initialize(path)
-        page = Nokogiri::HTML(open(URL + path).read, nil, "UTF-8")
-        @html = page.xpath("//div[@class='l-main-right']/p").to_s   # carrega o conteúdo da notícia
+        begin
+            page = Nokogiri::HTML(open(URL + path).read, nil, "UTF-8")
+            @html = page.xpath("//div[@class='l-main-right']/p").to_s   # carrega o conteúdo da notícia
+        rescue OpenURI::HTTPError => httpe
+            puts "HTTPError..."
+            @html = ""
+            return
+        end
     end
 end

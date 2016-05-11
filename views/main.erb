@@ -1,0 +1,19 @@
+<html>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="<%= url('/main.css') %>">
+    <title>O Antagonista</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+    <% @html.each do |noticia| %>
+        <article> <%= noticia %> </article>
+        <hr/>
+    <% end %>
+
+
+    <script type="text/javascript" src="<%= url('/jquery-latest.js') %>"></script>
+
+</body>
+</html>

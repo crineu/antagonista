@@ -12,13 +12,12 @@ h2 {
     color: #606D80;
 }
 
-ul {
+body {
     max-width: 940px;
     margin: 0 auto;
 }
 
-li {
-    list-style-type: none;
+article {
     border-left: 8px #2B4C7E solid;
     padding: 16px;
     margin-bottom: 16px;
