@@ -1,2 +1,2 @@
 # antagonista
-O Antagonista, sem o "leia mais..."
+O Antagonista, sem o `leia mais...`
