@@ -32,6 +32,22 @@ p {
     letter-spacing: 0.4px;
 }
 
+a.navegacao {
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 24px;
+    padding: 1px 13px;
+    position: fixed;
+    top: 0px;
+    background: #606D80;
+    color: white;
+    right: 56px;
+}
+
+a.proxima {
+    right: 0px;
+}
+
 footer {
     text-align: right;
     color: #DCE0E6;
