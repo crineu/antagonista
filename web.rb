@@ -1,6 +1,8 @@
 require 'sinatra'
 require './anta'
 
+ENV['version'] ||= `git describe --always --tags`
+
 get '/' do
     redirect '/pagina/1'
 end

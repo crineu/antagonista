@@ -31,3 +31,9 @@ p {
     line-height: 138%;
     letter-spacing: 0.4px;
 }
+
+footer {
+    text-align: right;
+    color: #DCE0E6;
+    font-size: small;
+}
