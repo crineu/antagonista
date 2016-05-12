@@ -11,6 +11,8 @@ body {
     margin: 0 auto;
 }
 
+img { width: 100%; }
+
 h2 {
     font: bold 28px Helvetica, Verdana, sans-serif;
     padding: 8px 0 15px 0;

@@ -10,7 +10,7 @@
     <% @html.each do |noticia| %>
         <article>
             <h2> <%= noticia[:title] %></h2>
-            <button action=' <%= noticia[:path] %>'> Carregar Notícia </button>
+            <a href='<%= noticia[:path] %>' class="js-placeholder"> <%= noticia[:path] %> </a>
         </article>
         <hr/>
     <% end %>

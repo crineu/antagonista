@@ -1,28 +1,16 @@
+
 $(function() {
 
-    $('button').click(function(e){ e.preventDefault(); load_news($(this)) });
+    // Substitui os links com o conteúdo das notícias
+    $('a.js-placeholder').each( function(index, element) { load_news(element) });
 
+    function load_news(element) {
+        var jquery_element = $(element);
+        var path  = jquery_element.attr('href')
 
-    function load_news(event) {
-        console.log('button clicked ' + $(event).attr('action'));
-        var botao = event;
-
-        $.ajax({
-            url: $(event).attr('action'),
-            dataType: "html",
-            type: 'GET',
-            beforeSend: function(xhr, opts){
-                // $('#thumb_' + input.attr('id')).html(spinning_circle);
-            },
-            error: function(msg){ console.log(msg); },
-            success: function(response){
-                // $('#thumb_' + input.attr('id')).html(a_tag);
-                // input.siblings('span').html('Substituir arquivo');
-                botao.replaceWith(response);
-            }
-        });
-
+        $.get(path, function(response) {
+            jquery_element.replaceWith(response);
+        }, "html");
     }
-
 
 })
