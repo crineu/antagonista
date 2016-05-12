@@ -15,7 +15,6 @@ img { width: 60%; }
 
 h2 {
     font: bold 28px Helvetica, Verdana, sans-serif;
-    padding: 8px 0 15px 0;
     color: #606D80;
 }
 
@@ -30,6 +29,12 @@ p {
     margin-bottom: 12px;
     line-height: 138%;
     letter-spacing: 0.4px;
+}
+
+div.data {
+    font-size: small;
+    color: #567EBB;
+    padding-bottom: 10px;
 }
 
 a.navegacao {

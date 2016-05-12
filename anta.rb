@@ -17,6 +17,7 @@ class Pagina
                 data = {}
                 data[:path]  = article.css("a")[0]['href']
                 data[:title] = article.css('h3').text
+                data[:date]  = article.css('span.post-meta').text
 
                 @html << data
             end

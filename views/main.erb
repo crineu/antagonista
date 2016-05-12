@@ -13,6 +13,7 @@
     <% @html.each do |noticia| %>
         <article>
             <h2> <%= noticia[:title] %></h2>
+            <div class="data"> <%= noticia[:date] %> </div>
             <a href='<%= noticia[:path] %>' class="js-placeholder"> <%= noticia[:path] %> </a>
         </article>
         <hr/>
