@@ -1,8 +1,9 @@
 require 'sinatra'
 require './anta'
 
-ENV['version'] ||= `git describe --always --tags`
+ENV['version'] ||= "0." + `git rev-list --count HEAD`
 enable :sessions
+set :session_secret, '*f0999c#te764e0ab33c0c80bacf5e7d40(2^B234'
 
 # HELPERS
 helpers do
