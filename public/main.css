@@ -1,25 +1,25 @@
-/* http://www.colourlovers.com/palette/151113/blue_jay_feather */
+/* http://www.colourlovers.com/palette/1473/Ocean_Five */
 
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato', Verdana, sans-serif;
 }
 
 body {
-    max-width: 920px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
-img { width: 60%; }
+img { width: 52%; }
 
 h2 {
     font: bold 28px Helvetica, Verdana, sans-serif;
-    color: #606D80;
+    color: #CC333F;
 }
 
 article {
-    border-left: 8px #2B4C7E solid;
+    border-left: 8px #00A0B0 solid;
     padding: 16px;
     margin-bottom: 16px;
     margin-top: 16px
@@ -28,12 +28,12 @@ article {
 p {
     margin-bottom: 12px;
     line-height: 138%;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.2px;
 }
 
 div.data {
     font-size: small;
-    color: #567EBB;
+    color: #6A4A3C;
     padding-bottom: 10px;
 }
 
@@ -44,7 +44,7 @@ a.navegacao {
     padding: 1px 13px;
     position: fixed;
     top: 0px;
-    background: #606D80;
+    background: #EB6841;
     color: white;
     right: 56px;
 }
