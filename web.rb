@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sass'
 require './anta'
 
 ENV['version'] ||= "0." + `git rev-list --count HEAD`
@@ -14,6 +15,10 @@ helpers do
 end
 
 # ROUTES
+get '/css/main.css' do
+    scss :main, :style => :compressed
+end
+
 get '/' do
     redirect '/pagina/1'
 end
