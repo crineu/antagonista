@@ -1,5 +1,6 @@
-$font_title: 'Julius Sans One', Arial, sans-serif;
-$font_text: 'Lato', Verdana, sans-serif;
+$title_font: 'Julius Sans One', Arial, sans-serif;
+$text_font: 'Lato', Verdana, sans-serif;
+$text_color: #444;
 
 
 /* http://www.colourlovers.com/palette/1473/Ocean_Five */
@@ -12,7 +13,7 @@ $font_text: 'Lato', Verdana, sans-serif;
 // $colors: (#2A363B, #E84A5F, #FF847C, #99B898, #EBF2F2);
 
 // http://www.colourlovers.com/palette/15/tech_light
-$colors: (#000000, #26ADE4, #4DBCE9, #26ADE4, #EBF2F2);
+$colors: (#202020, #26ADE4, #4DBCE9, #26ADE4, #EBF2F2);
 
 * {
     margin:  0;
@@ -20,9 +21,10 @@ $colors: (#000000, #26ADE4, #4DBCE9, #26ADE4, #EBF2F2);
 }
 
 body {
-    max-width:   700px;
+    max-width:   740px;
     margin:      0 auto;
-    font-family: $font_text;
+    font-family: $text_font;
+    color:       $text_color;
     background-color: nth($colors, 5);
 }
 
@@ -34,28 +36,32 @@ img {
 h2 {
     font-size:   26px;
     font-weight: bold;
-    font-family: $font_title;
+    font-family: $title_font;
     color:       nth($colors, 1);
 }
 
 article {
     border-left: 12px nth($colors, 2) solid;
-    padding:     16px;
+    padding:     16px 24px;
     margin:      16px 0;
     text-align:  justify;
     background-color: white;
+    -webkit-box-shadow: 3px 3px 5px 2px #ddd;
+    box-shadow:         3px 3px 5px 2px #ddd;
 }
 
 p {
-    margin-bottom:  12px;
     line-height:    138%;
     letter-spacing: 0.2px;
+    + p {
+        margin-top:  1.5em;
+    }
 }
 
 div.data {
     font-size: small;
     color: nth($colors, 3);
-    padding-bottom: 10px;
+    padding-bottom: 1em;
 }
 
 a {
@@ -70,6 +76,8 @@ a {
         color: white;
         right: 56px;
         font-family: monospace;
+        border-radius: 2px;
+        -webkit-border-radius: 2px;
     }
     &.proxima {
         right: 0px;
@@ -78,6 +86,5 @@ a {
 
 footer {
     text-align: right;
-    color: white;
     font-size: small;
 }
