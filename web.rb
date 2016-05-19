@@ -2,17 +2,7 @@ require 'sinatra'
 require 'sass'
 require './anta'
 
-ENV['version'] ||= "0." + `git rev-list --count HEAD`
-enable :sessions
-set :session_secret, '*f0999c#te764e0ab33c0c80bacf5e7d40(2^B234'
-
-# HELPERS
-helpers do
-    def pagina_atual
-        return session[:page] if session[:page]
-        return 0
-    end
-end
+ENV['version'] ||= "0.22"
 
 # ROUTES
 get '/css/main.css' do
@@ -24,19 +14,14 @@ get '/' do
 end
 
 get '/pagina/:num' do
-    session[:page] = params[:num].to_i
-    @html = Pagina.new(params[:num]).html
+    page_requested = params[:num].to_i
+    page_requested = 1 if page_requested < 1
+
+    @html = Pagina.new(page_requested).html
+    @proxima  = page_requested + 1
+    @anterior = page_requested == 1 ? nil : page_requested - 1
+
     erb :main
-end
-
-get '/proxima/?' do
-    redirect "/pagina/#{pagina_atual + 1}"
-end
-
-get '/anterior/?' do
-    proxima_pagina = (pagina_atual - 1)
-    proxima_pagina = 1 if proxima_pagina < 1
-    redirect "/pagina/#{proxima_pagina}"
 end
 
 get '/posts/:id' do

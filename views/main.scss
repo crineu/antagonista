@@ -67,17 +67,16 @@ div.data {
 a {
     text-decoration: none;
     &.navegacao {
-        font-weight: 800;
-        font-size: 24px;
-        padding: 1px 13px;
+        font-size: 20px;
+        padding: 3px 12px;
         position: fixed;
         top: 0px;
         background: nth($colors, 4);
         color: white;
-        right: 56px;
+        right: 68px;
         font-family: monospace;
         border-radius: 2px;
-        -webkit-border-radius: 2px;
+        -webkit-border-radius: 4px;
     }
     &.proxima {
         right: 0px;
