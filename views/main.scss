@@ -1,19 +1,17 @@
-$title_font: 'Julius Sans One', Arial, sans-serif;
+$title_font: 'Julius Sans One', Georgia, Arial, sans-serif;
 $text_font: 'Lato', Verdana, sans-serif;
 $text_color: #444;
 
+// $colors: (title, borda, navegação, backgound);
 
 /* http://www.colourlovers.com/palette/1473/Ocean_Five */
-// $colors: (#CC333F, #00A0B0, #6A4A3C, #EB6841, #EBF2F2);
-
-// http://www.colourlovers.com/palette/482774/dream_magnet
-// $colors: (#343838, #005F6B, #008C9E, #00B4CC, #EBF2F2);
+// $colors: (#CC333F, #00A0B0, #EB6841, #EBF2F2);
 
 // http://www.colourlovers.com/palette/1098589/coup_de_gr%C3%A2ce
-// $colors: (#2A363B, #E84A5F, #FF847C, #99B898, #EBF2F2);
+$colors: (#2A363B, #E84A5F, #FF847C, #EBF2F2);
 
 // http://www.colourlovers.com/palette/15/tech_light
-$colors: (#202020, #26ADE4, #4DBCE9, #26ADE4, #EBF2F2);
+// $colors: (#202020, #26ADE4, #26ADE4, #EBF2F2);
 
 * {
     margin:  0;
@@ -25,7 +23,7 @@ body {
     margin:      0 auto;
     font-family: $text_font;
     color:       $text_color;
-    background-color: nth($colors, 5);
+    background-color: nth($colors, 4);
 }
 
 img {
@@ -34,56 +32,57 @@ img {
 }
 
 h2 {
-    font-size:   26px;
+    font-size:   22px;
     font-weight: bold;
     font-family: $title_font;
     color:       nth($colors, 1);
 }
 
+div.data {
+    font-size: small;
+    color: lighten(nth($colors, 1), 50%);
+    padding-bottom: 1em;
+}
+
 article {
     border-left: 12px nth($colors, 2) solid;
     padding:     16px 24px;
-    margin:      16px 0;
-    text-align:  justify;
-    background-color: white;
-    -webkit-box-shadow: 3px 3px 5px 2px #ddd;
-    box-shadow:         3px 3px 5px 2px #ddd;
+    margin:      18px 0;
+    text-align:        justify;
+    background-color:  white;
+   -webkit-box-shadow: 3px 3px 5px 2px #ddd;
+           box-shadow: 3px 3px 5px 2px #ddd;
 }
 
 p {
     line-height:    138%;
     letter-spacing: 0.2px;
     + p {
-        margin-top:  1.5em;
+        margin-top: 1.5em;
     }
-}
-
-div.data {
-    font-size: small;
-    color: nth($colors, 3);
-    padding-bottom: 1em;
 }
 
 a {
     text-decoration: none;
     &.navegacao {
-        font-size: 20px;
-        padding: 3px 12px;
         position: fixed;
-        top: 0px;
-        background: nth($colors, 4);
-        color: white;
-        right: 68px;
+        top:      2px;
+        right:    70px;
+        font-size:   20px;
         font-family: monospace;
-        border-radius: 2px;
-        -webkit-border-radius: 4px;
+        padding:     3px 12px;
+        color:       white;
+        background: nth($colors, 3);
+       -webkit-border-radius: 4px;
+               border-radius: 2px;
     }
     &.proxima {
-        right: 0px;
+        right: 2px;
     }
 }
 
 footer {
     text-align: right;
-    font-size: small;
+    font-size:  small;
+    color:      darken(nth($colors, 4), 25%);
 }
