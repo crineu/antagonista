@@ -39,7 +39,9 @@ class Noticia
     def initialize(path)
         begin
             page = Nokogiri::HTML(open(URL + path).read, nil, "UTF-8")
-            @html = page.xpath("//div[@class='l-main-right']/p").to_s   # carrega o conteúdo da notícia
+            p_tags = page.xpath("//div[@class='l-main-right']/p") # carrega o conteúdo da notícia
+            p_tags.pop if p_tags.last.content.strip == ''         # remove último <p> se vazio
+            @html = p_tags.to_s
         rescue OpenURI::HTTPError => httpe
             puts "HTTPError..."
             @html = ""
