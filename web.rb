@@ -2,18 +2,18 @@ require 'sinatra'
 require 'sass'
 require './anta'
 
-ENV['version'] ||= "0.30"
+ENV['version'] ||= "1.00"
 
 # ROUTES
 get '/css/main.css' do
     scss :main, :style => :compressed
 end
 
-get '/' do
-    redirect '/pagina/1'
+get '/:num?' do
+    redirect "/pagina/#{params[:num]}"
 end
 
-get '/pagina/:num' do
+get '/pagina/?:num?/?' do
     page_requested = params[:num].to_i
     page_requested = 1 if page_requested < 1
 
