@@ -1,17 +1,22 @@
+// $pallete: (título, borda, navegação, backgound);
+
+/* http://www.colourlovers.com/palette/1473/Ocean_Five */
+// $pallete: (#CC333F, #00A0B0, #EB6841, #EBF2F2);
+
+// http://www.colourlovers.com/palette/1098589/coup_de_gr%C3%A2ce
+$pallete: (#2A363B, #E84A5F, #FF847C, #EBF2F2);
+
+// http://www.colourlovers.com/palette/15/tech_light
+// $pallete: (#202020, #26ADE4, #26ADE4, #EBF2F2);
+
 $title_font: 'Julius Sans One', Georgia, Arial, sans-serif;
 $text_font: 'Lato', Verdana, sans-serif;
 $text_color: #444;
 
-// $colors: (title, borda, navegação, backgound);
-
-/* http://www.colourlovers.com/palette/1473/Ocean_Five */
-// $colors: (#CC333F, #00A0B0, #EB6841, #EBF2F2);
-
-// http://www.colourlovers.com/palette/1098589/coup_de_gr%C3%A2ce
-$colors: (#2A363B, #E84A5F, #FF847C, #EBF2F2);
-
-// http://www.colourlovers.com/palette/15/tech_light
-// $colors: (#202020, #26ADE4, #26ADE4, #EBF2F2);
+$cor_titulo    : nth($pallete, 1);
+$cor_borda     : nth($pallete, 2);
+$cor_navegacao : nth($pallete, 3);
+$cor_fundo     : nth($pallete, 4);
 
 * {
     margin:  0;
@@ -23,11 +28,11 @@ body {
     margin:      0 auto;
     font-family: $text_font;
     color:       $text_color;
-    background-color: nth($colors, 4);
+    background-color: $cor_fundo;
 }
 
 img {
-    width: 98%;
+    width: 100%;
     max-width: 380px;
 }
 
@@ -35,20 +40,19 @@ h2 {
     font-size:   22px;
     font-weight: bold;
     font-family: $title_font;
-    color:       nth($colors, 1);
+    color:       $cor_titulo;
 }
 
 div.data {
     font-size: small;
-    color: lighten(nth($colors, 1), 50%);
+    color: lighten($cor_titulo, 50%);
     padding-bottom: 1em;
 }
 
 article {
-    border-left: 12px nth($colors, 2) solid;
+    border-left: 12px $cor_borda solid;
     padding:     16px 24px;
     margin:      18px 0;
-    text-align:        justify;
     background-color:  white;
    -webkit-box-shadow: 3px 3px 5px 2px #ddd;
            box-shadow: 3px 3px 5px 2px #ddd;
@@ -57,6 +61,7 @@ article {
 p {
     line-height:    138%;
     letter-spacing: 0.2px;
+    text-align:     justify;
     + p {
         margin-top: 1.5em;
     }
@@ -72,7 +77,7 @@ a {
         font-family: monospace;
         padding:     3px 12px;
         color:       white;
-        background: nth($colors, 3);
+        background: $cor_navegacao;
        -webkit-border-radius: 4px;
                border-radius: 2px;
     }
@@ -84,5 +89,5 @@ a {
 footer {
     text-align: right;
     font-size:  small;
-    color:      darken(nth($colors, 4), 25%);
+    color:      darken($cor_fundo, 25%);
 }
