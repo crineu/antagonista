@@ -15,7 +15,7 @@ $text_color: #444;
 
 $cor_titulo    : nth($pallete, 1);
 $cor_borda     : nth($pallete, 2);
-$cor_navegacao : nth($pallete, 3);
+$cor_borda2    : nth($pallete, 3);
 $cor_fundo     : nth($pallete, 4);
 
 * {
@@ -58,6 +58,8 @@ article {
            box-shadow: 3px 3px 5px 2px #ddd;
 }
 
+article:nth-of-type(even) { border-color: $cor_borda2; }
+
 p {
     line-height:    138%;
     letter-spacing: 0.2px;
@@ -77,7 +79,7 @@ a {
         font-family: monospace;
         padding:     3px 12px;
         color:       white;
-        background: $cor_navegacao;
+        background: $cor_borda2;
        -webkit-border-radius: 4px;
                border-radius: 2px;
     }
