@@ -17,14 +17,16 @@
     <% @html.each do |noticia| %>
         <article>
             <a href="<%= noticia[:full_path] %>" target="_blank">
-                <h2> <%= noticia[:title] %> </h2>
+                <header> <%= noticia[:title] %> </header>
             </a>
-            <div class="data"> <%= noticia[:date] %> </div>
-            <a href='<%= noticia[:path] %>' class="js-placeholder"> <%= noticia[:path] %> </a>
+            <div class="conteudo">
+                <a href='<%= noticia[:path] %>' class="js-placeholder"> <%= noticia[:path] %> </a>
+            </div>
+            <footer class="data"> <%= noticia[:date] %> </footer>
         </article>
     <% end %>
 
-    <footer><%= ENV['version']  %></footer>
+    <footer class="version"><%= ENV['version']  %></footer>
 
     <script type="text/javascript" src="<%= url('/jquery-latest.js') %>"></script>
     <script type="text/javascript" src="<%= url('/main.js') %>"></script>

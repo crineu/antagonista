@@ -1,17 +1,16 @@
 // $pallete: (título, borda, navegação, backgound);
 
 /* http://www.colourlovers.com/palette/1473/Ocean_Five */
-// $pallete: (#CC333F, #00A0B0, #EB6841, #EBF2F2);
-
-// http://www.colourlovers.com/palette/1098589/coup_de_gr%C3%A2ce
-$pallete: (#2A363B, #E84A5F, #FF847C, #EBF2F2);
+// $pallete: (#CC333F, #00A0B0, #EB6841, #b5b5b5);
 
 // http://www.colourlovers.com/palette/15/tech_light
-// $pallete: (#202020, #26ADE4, #26ADE4, #EBF2F2);
+$pallete: (#26ADE4, #26ADE4, #26ADE4, #b5b5b5);
 
 $title_font: 'Julius Sans One', Georgia, Arial, sans-serif;
-$text_font: 'Lato', Verdana, sans-serif;
+$text_font:  'Lato', Verdana, sans-serif;
 $text_color: #444;
+$padding_h:  60px;
+$padding_v:  30px;
 
 $cor_titulo    : nth($pallete, 1);
 $cor_borda     : nth($pallete, 2);
@@ -24,11 +23,21 @@ $cor_fundo     : nth($pallete, 4);
 }
 
 body {
-    max-width:   740px;
-    margin:      0 auto;
+    max-width:  780px;
+    margin:     0 auto;
+    background: $cor_fundo;
+}
+
+article {
+    margin:      $padding_v 0;
+    background-color: white;
+   -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
+           box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
+
+    border-top: none;
     font-family: $text_font;
     color:       $text_color;
-    background-color: $cor_fundo;
+    line-height: $padding_v;
 }
 
 img {
@@ -36,34 +45,37 @@ img {
     max-width: 380px;
 }
 
-h2 {
+header, footer.data, p {
+    padding: $padding_v $padding_h;
+    @media screen and (max-width: 600px) {
+        padding: $padding_v 10px;
+    }
+}
+
+header {
     font-size:   22px;
     font-weight: bold;
     font-family: $title_font;
     color:       $cor_titulo;
+    line-height: $padding_v;
 }
 
-div.data {
-    font-size: small;
-    color: lighten($cor_titulo, 50%);
-    padding-bottom: 1em;
+footer.data {
+    font-size:   small;
+    box-sizing:  border-box;
+    color:       lighten($cor_titulo, 25%);
+    margin-top:  $padding_v;
+    text-align:  right;
+    padding-top:      $padding_v / 2;
+    padding-bottom:   $padding_v / 2;
+    background-color: #f7f7f7;
 }
-
-article {
-    border-left: 12px $cor_borda solid;
-    padding:     16px 24px;
-    margin:      18px 0;
-    background-color:  white;
-   -webkit-box-shadow: 3px 3px 5px 2px #ddd;
-           box-shadow: 3px 3px 5px 2px #ddd;
-}
-
-article:nth-of-type(even) { border-color: $cor_borda2; }
 
 p {
     line-height:    138%;
     letter-spacing: 0.2px;
-    text-align:     justify;
+    padding-top:    0;
+    padding-bottom: 0;
     + p {
         margin-top: 1.5em;
     }
@@ -88,7 +100,7 @@ a {
     }
 }
 
-footer {
+footer.version {
     text-align: right;
     font-size:  small;
     color:      darken($cor_fundo, 25%);
