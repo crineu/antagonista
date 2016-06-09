@@ -1,16 +1,16 @@
 // $pallete: (título, borda, navegação, backgound);
 
 /* http://www.colourlovers.com/palette/1473/Ocean_Five */
-// $pallete: (#CC333F, #00A0B0, #EB6841, #b5b5b5);
+// $pallete: (#CC333F, #CC333F, #00A0B0, #b5b5bb);
 
 // http://www.colourlovers.com/palette/15/tech_light
-$pallete: (#26ADE4, #26ADE4, #26ADE4, #b5b5b5);
+$pallete: (#26ADE4, #26ADE4, #202020, #b5b5bf);
 
 $title_font: 'Julius Sans One', Georgia, Arial, sans-serif;
 $text_font:  'Lato', Verdana, sans-serif;
 $text_color: #444;
 $padding_h:  60px;
-$padding_v:  30px;
+$padding_v:  28px;
 
 $cor_titulo    : nth($pallete, 1);
 $cor_borda     : nth($pallete, 2);
@@ -29,7 +29,7 @@ body {
 }
 
 article {
-    margin:      $padding_v 0;
+    margin:      $padding_v 4px;
     background-color: white;
    -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
            box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
@@ -42,13 +42,13 @@ article {
 
 img {
     width: 100%;
-    max-width: 380px;
+    max-width: 420px;
 }
 
 header, footer.data, p {
     padding: $padding_v $padding_h;
     @media screen and (max-width: 600px) {
-        padding: $padding_v 10px;
+        padding: $padding_v 16px;
     }
 }
 
@@ -72,8 +72,9 @@ footer.data {
 }
 
 p {
-    line-height:    138%;
-    letter-spacing: 0.2px;
+    font-size:      17px;
+    line-height:    145%;
+    letter-spacing: 0.3px;
     padding-top:    0;
     padding-bottom: 0;
     + p {
@@ -85,15 +86,15 @@ a {
     text-decoration: none;
     &.navegacao {
         position: fixed;
-        top:      2px;
-        right:    70px;
+        top:      4px;
+        right:    80px;
         font-size:   20px;
         font-family: monospace;
-        padding:     3px 12px;
+        padding:     4px 14px;
         color:       white;
         background: $cor_borda2;
-       -webkit-border-radius: 4px;
-               border-radius: 2px;
+       -webkit-border-radius: 6px;
+               border-radius: 6px;
     }
     &.proxima {
         right: 2px;
