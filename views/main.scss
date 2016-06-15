@@ -4,13 +4,17 @@
 // $pallete: (#CC333F, #CC333F, #00A0B0, #b5b5bb);
 
 // http://www.colourlovers.com/palette/15/tech_light
-$pallete: (#26ADE4, #26ADE4, #202020, #b5b5bf);
+// $pallete: (#26ADE4, #26ADE4, #202020, #b5b5bf);
 
-$title_font: 'Julius Sans One', Georgia, Arial, sans-serif;
-$text_font:  'Lato', Verdana, sans-serif;
-$text_color: #444;
-$padding_h:  60px;
-$padding_v:  28px;
+// medium.com!
+$pallete: (#00ab6b, #26ADE4, #00ab6b, #d5dad5);
+
+$title_font: 'Alegreya', Georgia, Arial, sans-serif;
+$text_font:  'Karla', Verdana, sans-serif;
+$text_color: rgba(0, 0, 0, 0.8);
+$highlight:  rgba(97, 255, 160, 0.8);
+$padding_h:  52px;
+$padding_v:  24px;
 
 $cor_titulo    : nth($pallete, 1);
 $cor_borda     : nth($pallete, 2);
@@ -23,26 +27,27 @@ $cor_fundo     : nth($pallete, 4);
 }
 
 body {
-    max-width:  780px;
+    max-width:  800px;
     margin:     0 auto;
     background: $cor_fundo;
 }
 
 article {
     margin:      $padding_v 4px;
-    background-color: white;
+    border-top:  none;
+
+    background-color:  white;
    -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
            box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
 
-    border-top: none;
-    font-family: $text_font;
     color:       $text_color;
+    font-family: $text_font;
     line-height: $padding_v;
 }
 
-img {
-    width: 100%;
-    max-width: 420px;
+img, iframe {
+    width: 100% !important;
+    max-width: 500px !important;
 }
 
 header, footer.data, p {
@@ -53,32 +58,34 @@ header, footer.data, p {
 }
 
 header {
-    font-size:   22px;
-    font-weight: bold;
-    font-family: $title_font;
-    color:       $cor_titulo;
-    line-height: $padding_v;
+    font-size:      26px;
+    font-weight:    bold;
+    font-variant:   small-caps;
+    letter-spacing: 0.4px;
+    font-family:    $title_font;
+    color:          $cor_titulo;
+    line-height:    $padding_v;
 }
 
 footer.data {
     font-size:   small;
     box-sizing:  border-box;
-    color:       lighten($cor_titulo, 25%);
     margin-top:  $padding_v;
     text-align:  right;
     padding-top:      $padding_v / 2;
     padding-bottom:   $padding_v / 2;
-    background-color: #f7f7f7;
+    color:            darken($highlight, 42%);
+    background-color: $highlight;
 }
 
 p {
-    font-size:      17px;
-    line-height:    145%;
-    letter-spacing: 0.3px;
+    font-size:      18px;
+    line-height:    150%;
+    letter-spacing: 0.1px;
     padding-top:    0;
     padding-bottom: 0;
     + p {
-        margin-top: 1.5em;
+        margin-top: 1.8em;
     }
 }
 
@@ -86,18 +93,18 @@ a {
     text-decoration: none;
     &.navegacao {
         position: fixed;
-        top:      4px;
+        top:      8px;
         right:    80px;
         font-size:   20px;
         font-family: monospace;
         padding:     4px 14px;
         color:       white;
-        background: $cor_borda2;
+        background:  $cor_borda2;
        -webkit-border-radius: 6px;
                border-radius: 6px;
     }
     &.proxima {
-        right: 2px;
+        right: 4px;
     }
 }
 
