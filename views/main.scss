@@ -13,8 +13,8 @@ $title_font: 'Alegreya', Georgia, Arial, sans-serif;
 $text_font:  'Karla', Verdana, sans-serif;
 $text_color: rgba(0, 0, 0, 0.8);
 $highlight:  rgba(97, 255, 160, 0.8);
-$padding_h:  52px;
-$padding_v:  24px;
+$padding_h:  54px;
+$padding_v:  22px;
 
 $cor_titulo    : nth($pallete, 1);
 $cor_borda     : nth($pallete, 2);
@@ -80,12 +80,12 @@ footer.data {
 
 p {
     font-size:      18px;
-    line-height:    150%;
+    line-height:    148%;
     letter-spacing: 0.1px;
     padding-top:    0;
     padding-bottom: 0;
     + p {
-        margin-top: 1.8em;
+        margin-top: 1.1em;
     }
 }
 
@@ -93,7 +93,7 @@ a {
     text-decoration: none;
     &.navegacao {
         position: fixed;
-        top:      8px;
+        top:      6px;
         right:    80px;
         font-size:   20px;
         font-family: monospace;

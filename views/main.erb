@@ -10,9 +10,9 @@
 <body>
 
     <% if @anterior %>
-        <a href="/pagina/<%= @anterior %>" class="navegacao"><%= @anterior %><< </a>
+        <a href="/<%= @anterior %>" class="navegacao"><%= @anterior %><< </a>
     <% end %>
-    <a href="/pagina/<%= @proxima %>" class="navegacao proxima"> >><%= @proxima %></a>
+    <a href="/<%= @proxima %>" class="navegacao proxima"> >><%= @proxima %></a>
 
     <% @html.each do |noticia| %>
         <article>
