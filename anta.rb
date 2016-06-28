@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
+require 'json'
 
 URL = "http://www.oantagonista.com"
 
@@ -18,17 +19,17 @@ end
 class Pagina
     attr_reader :html
 
-    def initialize(pagina: 1)
+    def initialize(pagina = 1)
         @html = []
-        @page = Crawler.crawl("/pagina/#{pagina}")
+        json = Crawler.crawl("/wp-json/apiantagonista/v1/postindex?page=#{pagina}")
+        json = JSON.parse json
 
-        artigos = @page.xpath("//article")
-        artigos.each do |article|
+        json.each do |article|
             data = {}
-            data[:path]      = article.css("a")[0]['href']
-            data[:full_path] = url + data[:path]
-            data[:title]     = article.css('h3').text
-            data[:date]      = article.css('span.post-meta').text
+            data[:path]      = article['link']
+            data[:full_path] = article['shortlink']
+            data[:title]     = article['title']
+            data[:date]      = article['date']
 
             @html << data
         end
