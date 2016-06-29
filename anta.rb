@@ -45,8 +45,8 @@ class Noticia
 
         page = Nokogiri::HTML(Crawler.crawl(path), nil, "UTF-8")
         p_tags = page.xpath("//article/p") # carrega o conteúdo da notícia
-        # p_tags.pop if p_tags.last.children.first.name == 'br' # remove último <p> se for <br>
-        p_tags.pop if p_tags.last.content.empty? # remove último <p> se for <br>
+        p_tags.pop if p_tags.last.text.gsub(/[[:space:]]/, '').empty? # remove último <p> se for vazio
+
         @html = p_tags.to_s
     end
 end
