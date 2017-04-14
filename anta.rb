@@ -1,4 +1,4 @@
-require 'nokogiri'
+require 'oga'
 require 'open-uri'
 
 URL = "http://www.oantagonista.com"
@@ -6,7 +6,9 @@ URL = "http://www.oantagonista.com"
 module Crawler
     def self.crawl(path)
         begin
-            return Nokogiri::HTML(open(URL + path).read, nil, "UTF-8")
+            # return Nokogiri::HTML(open(URL + path).read, nil, "UTF-8")
+            html = open(URL + path, open_timeout: 10, redirect: false).read
+            return Oga.parse_html(html)
         rescue OpenURI::HTTPError
             return ""
         end
@@ -44,11 +46,8 @@ class Noticia
 
         # carrega o conteúdo da notícia, dentro de um elemento
         # <div class="the-content-text"...
-        p_tags = page.xpath("//div[@class='the-content-text']")
+        conteudo = page.xpath("//div[@class='the-content-text']")
 
-        # remove último <p> se for <br>
-        # p_tags.pop if p_tags.last.children.first.name == 'br'
-
-        @html = p_tags.to_s
+        @html = conteudo.first.to_xml
     end
 end
