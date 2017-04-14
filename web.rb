@@ -2,7 +2,7 @@ require 'sinatra'
 require 'sass'
 require './anta'
 
-ENV['version'] ||= "1.71"
+ENV['version'] ||= "1.72"
 
 # ROUTES
 get '/css/main.css' do
