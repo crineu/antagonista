@@ -6,11 +6,10 @@ URL = "http://www.oantagonista.com"
 module Crawler
     def self.crawl(path)
         begin
-            html = Nokogiri::HTML(open(URL + path).read, nil, "UTF-8")
-        rescue OpenURI::HTTPError => httpe
-            html = ""
+            return Nokogiri::HTML(open(URL + path).read, nil, "UTF-8")
+        rescue OpenURI::HTTPError
+            return ""
         end
-        html
     end
 end
 
@@ -42,8 +41,13 @@ class Noticia
         @html = ""
 
         page = Crawler.crawl(path)
-        p_tags = page.xpath("//div[@class='l-main-right']/p") # carrega o conteúdo da notícia
-        p_tags.pop if p_tags.last.children.first.name == 'br' # remove último <p> se for <br>
+
+        # carrega o conteúdo da notícia, dentro de um elemento
+        # <div class="the-content-text"...
+        p_tags = page.xpath("//div[@class='the-content-text']")
+
+        # remove último <p> se for <br>
+        # p_tags.pop if p_tags.last.children.first.name == 'br'
 
         @html = p_tags.to_s
     end
