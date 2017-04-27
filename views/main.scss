@@ -112,9 +112,11 @@ a {
 }
 
 footer.version {
-    text-align: right;
-    font-size:  small;
-    color:      darken($cor_fundo, 25%);
+    font-size: small;
+    color:     darken($cor_fundo, 28%);
+    position:  fixed;
+    bottom:    4px;
+    right:     8px;
 }
 
 .jkselected {
