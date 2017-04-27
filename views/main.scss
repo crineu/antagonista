@@ -33,12 +33,15 @@ body {
 }
 
 article {
-    margin:      $padding_v 4px;
-    border-top:  none;
+    margin: $padding_v 4px;
 
     background-color:  white;
-   -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
-           box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
+
+    -webkit-border-top-left-radius: 8px;
+       -moz-border-top-left-radius: 8px;
+            border-top-left-radius: 8px;
 
     color:       $text_color;
     font-family: $text_font;
@@ -112,4 +115,11 @@ footer.version {
     text-align: right;
     font-size:  small;
     color:      darken($cor_fundo, 25%);
+}
+
+.jkselected {
+    border-left:  4px solid darken($cor_titulo, 16%);
+    border-right: 4px solid darken($cor_titulo, 16%);
+    margin-left:  -4px;
+    margin-right: -4px;
 }

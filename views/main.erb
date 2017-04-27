@@ -15,7 +15,7 @@
     <a href="/<%= @proxima %>" class="navegacao proxima"> >><%= @proxima %></a>
 
     <% @html.each do |noticia| %>
-        <article>
+        <article data-selectable="">
             <a href="<%= noticia[:full_path] %>" target="_blank">
                 <header> <%= noticia[:title] %> </header>
             </a>

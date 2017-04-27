@@ -15,31 +15,50 @@ $(function() {
 
 })
 
-Mousetrap.bind('j', function(e, combo) {
-    console.log(combo); // logs 'ctrl+shift+up'
-});
-
-Mousetrap.bind('k', function(e, combo) {
-    console.log(combo); // logs 'ctrl+shift+up'
+// alert de ajuda
+Mousetrap.bind('?', function(e, combo) {
+    alert("[ j / k ] => navegar entre os posts\n[ p / n ] => navegar entre páginas")
 });
 
 // location.href     = "http://localhost:5000/2"
 // location.origin   = "http://localhost:5000"
 // location.pathname = "/2"
+Mousetrap.bind('n', function(e, combo) { npNavigate(+1); });
+Mousetrap.bind('p', function(e, combo) { npNavigate(-1); });
 
-Mousetrap.bind('n', function(e, combo) {
-    var proxima_pagina = parseInt(location.pathname.slice(1)) + 1
-    location.href = location.origin + '/' + proxima_pagina
-});
+// scroll usando j / k
+Mousetrap.bind('j', function(e, combo) { jkNavigate(+1); });
+Mousetrap.bind('k', function(e, combo) { jkNavigate(-1); });
 
-Mousetrap.bind('p', function(e, combo) {
-    var pagina_anterior = parseInt(location.pathname.slice(1)) - 1
-    if (pagina_anterior === 0) { return false; }
-    location.href = location.origin + '/' + pagina_anterior
-});
 
-// alert de ajuda
+function npNavigate(increment) {
+    var page_number = parseInt(location.pathname.slice(1));
+    if (isNaN(page_number)) { page_number = 1; }
 
-Mousetrap.bind('?', function(e, combo) {
-    alert("j / k para navegar entre os posts\np / n para páginas")
-});
+    var next_page = page_number + increment;
+    if (next_page < 1) { return false; }
+    location.href = location.origin + '/' + next_page
+}
+
+function jkNavigate(increment) {
+    var selectables = $('[data-selectable]:visible');
+    if (selectables.length == 0) {
+        return false;
+    }
+
+    var current = selectables.index($('.jkselected'));
+
+    var next = current + increment;
+    if (next == selectables.length || next < 0) { return false; }
+
+    var currentSelectable = $(selectables[current]);
+    var nextSelectable    = $(selectables[next]);
+
+    currentSelectable.removeClass('jkselected');
+    nextSelectable.addClass('jkselected');
+
+    // make sure selected item is visible within vertical display
+    $('html, body').animate({ scrollTop: nextSelectable.offset().top - 20}, 200);
+
+    $(':focus').blur(); // remove focus from any element that may be in focus
+}
