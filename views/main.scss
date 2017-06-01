@@ -102,7 +102,7 @@ a {
         font-family: monospace;
         padding:     4px 14px;
         color:       white;
-        background:  $cor_borda2;
+        background:  $cor_borda;
        -webkit-border-radius: 6px;
                border-radius: 6px;
     }
@@ -120,8 +120,8 @@ footer.version {
 }
 
 .jkselected {
-    border-left:  4px solid darken($cor_titulo, 16%);
-    border-right: 4px solid darken($cor_titulo, 16%);
-    margin-left:  -4px;
-    margin-right: -4px;
+    border-left:  4px solid $cor_borda;
+    border-right: 4px solid $cor_borda;
+    margin-left:  0px;
+    margin-right: 0px;
 }
