@@ -14,6 +14,8 @@
     <% end %>
     <a href="/<%= @proxima %>" class="navegacao proxima"> >><%= @proxima %></a>
 
+
+
     <% @html.each do |noticia| %>
         <article data-selectable="">
             <a href="<%= noticia[:full_path] %>" target="_blank">
@@ -25,6 +27,8 @@
             <footer class="data"> <%= noticia[:date] %> </footer>
         </article>
     <% end %>
+
+
 
     <footer class="version"><%= ENV['version'] %></footer>
 
