@@ -29,7 +29,7 @@ class TestAnta < MiniTest::Test
 		result = "<p>O Antagonista acaba de confirmar com fontes do TRF-4 que o desembargador Gebran Neto colocará o último recurso de Lula em julgamento na segunda-feira 26.</p><p>Como os embargos de declaração não alteram a sentença, a prisão do ex-presidente será confirmada e caberá a Sergio Moro a ordem final – que poderá sair no mesmo dia.</p>"
 		crawled = Noticia.new("brasil__confirmado-lula-sera-preso-na-segunda-feira-26.html").html
 
-		assert_equal expected, crawled
+		assert_equal result, crawled
 	end
 
 end
