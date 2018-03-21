@@ -1,3 +1,9 @@
+// Initialize the jk plugin
+jk.init({
+    elements: 'article',
+    activeClass: 'current'
+});
+
 
 $(function() {
 

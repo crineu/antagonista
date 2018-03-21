@@ -45,6 +45,12 @@ article {
     line-height: $padding_v;
 }
 
+$border: 2px;
+.current {
+    margin: ($padding_v - $border) 2px;
+    border: $border $cor_borda2 solid;
+}
+
 img, iframe {
     width: 100% !important;
     max-width: 500px !important;
