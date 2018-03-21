@@ -1,16 +1,17 @@
 require 'oga'
 require 'open-uri'
 
-URL = "https://www.oantagonista.com"
+URL = "https://www.oantagonista.com".freeze
 
 module Crawler
-    def self.crawl(path)
+    def self.crawl(url)
+        puts url
         begin
-            html = Oga.parse_html(open(URL + path).read)
+            html = open(url, open_timeout: 10, redirect: true).read
+            return Oga.parse_html(html)
         rescue OpenURI::HTTPError => httpe
-            html = ""
+            return ""
         end
-        html
     end
 end
 
@@ -18,12 +19,12 @@ end
 class Pagina
     attr_reader :html
 
-    def initialize(pagina = 1)
+    def initialize(page_number = 1)
         @html = []
-        page = Crawler.crawl("/pagina/#{pagina}")
+        page = Crawler.crawl(URL + "/pagina/#{page_number}")
 
-        artigos = page.xpath("//article")
-        artigos.each do |article|
+        articles = page.xpath("//article")
+        articles.each do |article|
             next if article.at_xpath("./div/a/@data-link").nil?
             data = {}
             data[:full_path]  = article.at_xpath("./div/a/@data-link").value
@@ -42,7 +43,7 @@ class Noticia
     def initialize(path)
         @html = ""
 
-        page = Crawler.crawl(path)
+        page = Crawler.crawl(URL + path)
         elements_set = page.at_xpath("//div[@id='entry-text-post']") # carrega o conteúdo da notícia
 
         @html = elements_set.children.select{ |c| c.class == Oga::XML::Element }.map{ |e| e.to_xml }.join

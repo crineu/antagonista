@@ -33,12 +33,15 @@ body {
 }
 
 article {
-    margin:      $padding_v 4px;
-    border-top:  none;
+    margin: $padding_v 4px;
 
     background-color:  white;
-   -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
-           box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
+
+    -webkit-border-top-left-radius: 8px;
+       -moz-border-top-left-radius: 8px;
+            border-top-left-radius: 8px;
 
     color:       $text_color;
     font-family: $text_font;
@@ -52,7 +55,7 @@ $border: 2px;
 }
 
 img, iframe {
-    width: 100% !important;
+    // width: 100% !important;
     max-width: 500px !important;
 }
 
@@ -105,7 +108,7 @@ a {
         font-family: monospace;
         padding:     4px 14px;
         color:       white;
-        background:  $cor_borda2;
+        background:  $cor_borda;
        -webkit-border-radius: 6px;
                border-radius: 6px;
     }
@@ -115,7 +118,16 @@ a {
 }
 
 footer.version {
-    text-align: right;
-    font-size:  small;
-    color:      darken($cor_fundo, 25%);
+    font-size: small;
+    color:     darken($cor_fundo, 28%);
+    position:  fixed;
+    bottom:    4px;
+    right:     8px;
+}
+
+.jkselected {
+    border-left:  4px solid $cor_borda;
+    border-right: 4px solid $cor_borda;
+    margin-left:  0px;
+    margin-right: 0px;
 }

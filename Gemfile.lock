@@ -44,12 +44,12 @@ DEPENDENCIES
   minitest
   oga (~> 2.14)
   rake
-  sass
+  sass (~> 3.4)
   sinatra (~> 2)
   thin
 
 RUBY VERSION
-   ruby 2.2.4p230
+   ruby 2.4.3p205
 
 BUNDLED WITH
    1.16.1
