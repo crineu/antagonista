@@ -2,7 +2,7 @@ require 'sinatra'
 require 'sass'
 require './anta'
 
-ENV['version'] ||= "1.61"
+ENV['version'] ||= "2.01"
 
 # ROUTES
 get '/css/main.css' do
@@ -20,6 +20,6 @@ get '/:num?/?' do
     erb :main
 end
 
-get '/posts/:id' do
-    Noticia.new("/posts/#{params[:id]}").html
+get '/:categoria/:titulo/?' do
+    Noticia.new("/#{params[:categoria]}/#{params[:titulo]}").html
 end

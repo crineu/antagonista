@@ -1,12 +1,12 @@
-require 'nokogiri'
+require 'oga'
 require 'open-uri'
 
-URL = "http://www.oantagonista.com"
+URL = "https://www.oantagonista.com"
 
 module Crawler
     def self.crawl(path)
         begin
-            html = Nokogiri::HTML(open(URL + path).read, nil, "UTF-8")
+            html = Oga.parse_html(open(URL + path).read)
         rescue OpenURI::HTTPError => httpe
             html = ""
         end
@@ -24,11 +24,12 @@ class Pagina
 
         artigos = page.xpath("//article")
         artigos.each do |article|
+            next if article.at_xpath("./div/a/@data-link").nil?
             data = {}
-            data[:path]      = article.css("a")[0]['href']
-            data[:full_path] = URL + data[:path]
-            data[:title]     = article.css('h3').text
-            data[:date]      = article.css('span.post-meta').text
+            data[:full_path]  = article.at_xpath("./div/a/@data-link").value
+            data[:local_path] = data[:full_path].split('gonista.com/').last
+            data[:title]      = article.at_xpath("./div/a/@data-title").value
+            data[:date]       = article.at_xpath("./div/a/span/time/@datetime").value
             @html << data
         end
     end
@@ -42,9 +43,8 @@ class Noticia
         @html = ""
 
         page = Crawler.crawl(path)
-        p_tags = page.xpath("//div[@class='l-main-right']/p") # carrega o conteúdo da notícia
-        p_tags.pop if p_tags.last.children.first.name == 'br' # remove último <p> se for <br>
+        elements_set = page.at_xpath("//div[@id='entry-text-post']") # carrega o conteúdo da notícia
 
-        @html = p_tags.to_s
+        @html = elements_set.children.select{ |c| c.class == Oga::XML::Element }.map{ |e| e.to_xml }.join
     end
 end
