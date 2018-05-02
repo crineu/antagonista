@@ -1,13 +1,16 @@
 # antagonista
 O Antagonista, sem o `leia mais...`
 
-
 ## Instalação
 
     bundle install 
 
-...para baixar as dependências, e...
+...para baixar as dependências...
 
-    rerun 'bundle exec ruby web.rb -p 5000'
+    bundle exec rspec
+
+...para rodar os testes e...
+
+    foreman start
 
 ...para rodar a aplicação.
