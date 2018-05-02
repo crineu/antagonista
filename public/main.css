@@ -1,0 +1,117 @@
+/* http://www.colourlovers.com/palette/1473/Ocean_Five */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin:     0 auto;
+  max-width:  800px;
+  background: #d5dad5;
+}
+
+article {
+  color:            rgba(0, 0, 0, 0.8);
+  background-color: white;
+
+  margin: 24px 4px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
+          border-top-left-radius: 8px;
+     -moz-border-top-left-radius: 8px;
+  -webkit-border-top-left-radius: 8px;
+  line-height: 24px;
+  font-family: "Work Sans", Verdana, sans-serif;
+}
+
+.current {
+  margin: 22px 2px;
+  border: 2px #00A0B0 solid;
+}
+
+img, iframe {
+  max-width: 100% !important;
+}
+
+header, footer.data, p {
+  padding: 24px 54px;
+}
+
+@media screen and (max-width: 600px) {
+  header, footer.data, p {
+    padding: 24px 16px;
+  }
+}
+
+header {
+  font-size:      26px;
+  font-weight:    bold;
+  font-variant:   small-caps;
+  letter-spacing: 0.4px;
+  line-height:    24px;
+
+  font-family: "Alegreya", Georgia, Arial, sans-serif;
+  color: #00ab6b;
+}
+
+footer.data {
+  box-sizing:     border-box;
+  margin-top:     24px;
+  padding-top:    10px;
+  padding-bottom: 10px;
+
+  font-size:  small;
+  text-align: right;
+
+  color:            rgba(0,  138,  55, 0.8);
+  background-color: rgba(97, 255, 160, 0.8);
+}
+
+p {
+  font-size:      17px;
+  line-height:    138%;
+  letter-spacing: 0.2px;
+
+  padding-top:    0;
+  padding-bottom: 0;
+}
+p + p {
+  margin-top: 1.2em;
+}
+
+a {
+  text-decoration: none;
+}
+a.navegacao {
+  position: fixed;
+  top:      6px;
+  right:    80px;
+  padding:  4px 14px;
+
+  font-size:   20px;
+  font-family: monospace;
+          border-radius: 6px;
+  -webkit-border-radius: 6px;
+
+  color: white;
+  background: #26ADE4;
+}
+a.proxima {
+  right: 4px;
+}
+
+footer.version {
+  position: fixed;
+  bottom:   4px;
+  right:    8px;
+
+  font-size: small;
+  color:     #899789;
+}
+
+.jkselected {
+  border-left:  4px solid #26ADE4;
+  border-right: 4px solid #26ADE4;
+  margin-left:  0px;
+  margin-right: 0px;
+}
