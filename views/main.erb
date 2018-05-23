@@ -16,7 +16,7 @@
 
 
 
-    <% @html.each do |noticia| %>
+    <% @html.reverse.each do |noticia| %>
         <article data-selectable="">
             <a href="<%= noticia[:full_path] %>" target="_blank">
                 <header> <%= noticia[:title] %> </header>

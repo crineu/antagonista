@@ -1,7 +1,7 @@
 require 'sinatra'
 require './anta'
 
-ENV['version'] ||= "2.3.0"
+ENV['version'] ||= "2.3.1"
 
 # ROUTES
 get '/:num?/?' do
