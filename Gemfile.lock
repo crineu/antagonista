@@ -8,8 +8,8 @@ GEM
     oga (2.15)
       ast
       ruby-ll (~> 2.1)
-    rack (2.0.4)
-    rack-protection (2.0.1)
+    rack (2.0.5)
+    rack-protection (2.0.3)
       rack
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
@@ -27,10 +27,10 @@ GEM
     ruby-ll (2.1.2)
       ansi
       ast
-    sinatra (2.0.1)
+    sinatra (2.0.3)
       mustermann (~> 1.0)
       rack (~> 2.0)
-      rack-protection (= 2.0.1)
+      rack-protection (= 2.0.3)
       tilt (~> 2.0)
     tilt (2.0.8)
 
@@ -46,4 +46,4 @@ RUBY VERSION
    ruby 2.4.4p296
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
