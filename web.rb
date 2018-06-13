@@ -1,14 +1,15 @@
 require 'sinatra'
-require './anta'
+require_relative 'lib/crawler.rb'
+require_relative 'lib/parser.rb'
 
-ENV['version'] = "3.0"
+ENV['version'] = "3.2"
 
 # ROUTES
 get '/:num?/?' do
     page_requested = params[:num].to_i
     page_requested = 1 if page_requested < 1
 
-    @html     = Pagina.new(page_requested).html
+    @html     = NewsListCleaner.clean(WebCrawler.crawlAntaNewsList(page_requested))
     @proxima  = page_requested + 1
     @anterior = page_requested == 1 ? nil : page_requested - 1
 
@@ -16,5 +17,5 @@ get '/:num?/?' do
 end
 
 get '/:categoria/:titulo/?' do
-    Noticia.new("/#{params[:categoria]}/#{params[:titulo]}").html
+    SingleNewsCleaner.clean(WebCrawler.crawlAntaSingleNews(params[:categoria], params[:titulo]))
 end
