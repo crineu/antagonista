@@ -1,9 +1,8 @@
 <html>
 <head>
-    <link href='https://fonts.googleapis.com/css?family=Alegreya' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Work+Sans' rel='stylesheet' type='text/css'>
-
+    <link href="https://fonts.googleapis.com/css?family=Alegreya|Work+Sans" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="main.css">
+
     <title>O Antagonista</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
@@ -16,7 +15,7 @@
 
 
 
-    <% @html.reverse.each do |noticia| %>
+    <% @news.reverse.each do |noticia| %>
         <article data-selectable="">
             <a href="<%= noticia[:full_path] %>" target="_blank">
                 <header> <%= noticia[:title] %> </header>
