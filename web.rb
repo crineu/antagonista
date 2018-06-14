@@ -2,7 +2,9 @@ require 'sinatra'
 require_relative 'lib/crawler.rb'
 require_relative 'lib/parser.rb'
 
-ENV['version'] = "3.5"
+use Rack::Deflater
+
+ENV['version'] = "3.6"
 
 # ROUTES
 get '/:num?/?' do
