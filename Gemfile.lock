@@ -8,6 +8,7 @@ GEM
     oga (2.15)
       ast
       ruby-ll (~> 2.1)
+    puma (3.11.4)
     rack (2.0.5)
     rack-protection (2.0.3)
       rack
@@ -39,6 +40,7 @@ PLATFORMS
 
 DEPENDENCIES
   oga (~> 2.14)
+  puma (~> 3.0)
   rspec (~> 3.0)
   sinatra (~> 2)
 

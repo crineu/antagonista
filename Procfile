@@ -1,1 +1,1 @@
-web: bundle exec ruby -Ilib web.rb -p $PORT
+web: bundle exec puma -Ilib -C puma_config.rb
