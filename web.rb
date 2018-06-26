@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 require 'sinatra'
-require_relative 'lib/crawler.rb'
-require_relative 'lib/parser.rb'
+
+require 'crawler'
+require 'parser'
 
 use Rack::Deflater
 
-ENV['version'] = "3.6.4"
+ENV['version'] = "3.6.5"
 
 # ROUTES
 get '/:num?/?' do
