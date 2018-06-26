@@ -39,7 +39,7 @@ PLATFORMS
 
 DEPENDENCIES
   oga (~> 2.14)
-  rspec
+  rspec (~> 3.0)
   sinatra (~> 2)
 
 RUBY VERSION

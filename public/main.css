@@ -32,6 +32,9 @@ article {
 img, iframe {
   max-width: 100% !important;
 }
+iframe, twitterwidget {
+  padding: 0px 54px !important;
+}
 
 header, footer.data, p {
   padding: 24px 54px;
