@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module NewsListCleaner
   def self.clean(bloated_html)
     list = []
