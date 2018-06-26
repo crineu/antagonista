@@ -4,7 +4,7 @@ require_relative 'lib/parser.rb'
 
 use Rack::Deflater
 
-ENV['version'] = "3.6.1"
+ENV['version'] = "3.6.2"
 
 # ROUTES
 get '/:num?/?' do

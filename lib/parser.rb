@@ -22,5 +22,7 @@ module SingleNewsCleaner
       .children.select { |c| c.class == Oga::XML::Element } # filtra apenas os elementos
       .map(&:to_xml)                                        # transforma em xml
       .join
+    rescue NoMethodError
+      false
   end
 end

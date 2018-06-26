@@ -9,7 +9,13 @@ $(function() {
         var path  = jquery_element.attr('href')
 
         $.get(path, function(response) {
-            jquery_element.replaceWith(response);
+            // console.log(response.length);
+            if (response.length > 0) {
+                jquery_element.replaceWith(response);
+            } else {
+                console.log("Erro ao caregar " + path);
+                return false;
+            }
         }, "html");
     }
 
