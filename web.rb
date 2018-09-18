@@ -6,7 +6,7 @@ require 'parser'
 
 use Rack::Deflater
 
-ENV['version'] = "3.6.5"
+ENV['version'] = "3.7.1"
 
 # ROUTES
 get '/:num?/?' do
@@ -21,5 +21,9 @@ get '/:num?/?' do
 end
 
 get '/:categoria/:titulo/?' do
-  SingleNewsCleaner.clean(WebCrawler.crawlAntaSingleNews(params[:categoria], params[:titulo]))
+  SingleNewsCleaner.clean(
+    WebCrawler.crawlAntaSingleNews(
+      params[:categoria], params[:titulo]
+    )
+  )
 end
