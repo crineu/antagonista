@@ -89,7 +89,7 @@ a {
 a.navegacao {
   position: fixed;
   top:      6px;
-  right:    80px;
+  left:     4px;
   padding:  4px 14px;
 
   font-size:   20px;
@@ -98,10 +98,10 @@ a.navegacao {
   -webkit-border-radius: 6px;
 
   color: white;
-  background: #26ADE4;
+  background: #456990;
 }
 a.proxima {
-  right: 4px;
+  left: 80px;
 }
 
 footer.version {
@@ -114,8 +114,8 @@ footer.version {
 }
 
 .jkselected {
-  border-left:  4px solid #26ADE4;
-  border-right: 4px solid #26ADE4;
+  border-left:  4px solid #456990;
+  border-right: 4px solid #456990;
   margin-left:  0px;
   margin-right: 0px;
 }

@@ -9,9 +9,9 @@
 <body>
 
     <% if @anterior %>
-        <a href="/<%= @anterior %>" class="navegacao"><%= @anterior %><< </a>
+        <a href="/<%= @anterior %>" class="navegacao"><-<%= @anterior %></a>
     <% end %>
-    <a href="/<%= @proxima %>" class="navegacao proxima"> >><%= @proxima %></a>
+    <a href="/<%= @proxima %>" class="navegacao proxima"><%= @proxima %>-></a>
 
 
 
