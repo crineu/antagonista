@@ -1,25 +1,41 @@
 
-$(function() {
+document.addEventListener("DOMContentLoaded", function(event) {
+  console.log(document.attachEvent)
 
-	// Substitui links com o conteúdo das notícias
-	$('a.js-placeholder').each( function(index, element) { load_news(element) });
+  // Varre as notícias com 'js-placeholder' e carrega notícias
+  var elements = document.querySelectorAll('a.js-placeholder');
+  Array.prototype.forEach.call(elements, function(element, index) {
+    load_news(element)
+  });
+});
 
-	function load_news(element) {
-		var jquery_element    = $(element);
-		var internal_api_path = jquery_element.attr('href')
 
-		$.get(internal_api_path, function(ajax_response) {
-			// console.log(ajax_response.length);
-			if (ajax_response.length > 0) {
-				jquery_element.replaceWith(ajax_response);
-			} else {
-				console.log("Erro ao caregar " + internal_api_path);
-				return false;
-			}
-		}, "html");
-	}
+// Substitui links pelo conteúdo das notícias usando ajax
+function load_news(element) {
+	var internal_api_path = element.getAttribute('href')
 
-})
+	var request = new XMLHttpRequest();
+	request.open('GET', internal_api_path, true);
+
+	request.onload = function() {
+	  if (request.status >= 200 && request.status < 400) {
+	    // Success!
+	    element.outerHTML = request.responseText;
+	  } else {
+	    // We reached our target server, but it returned an error
+	    console.error("Servidor respondeu com erro em " + internal_api_path);
+	    return false;
+	  }
+	};
+
+	request.onerror = function() {
+	  console.error("Falha ao tentar carregar " + internal_api_path);
+	  return false;
+	};
+
+	request.send();
+}
+
 
 // alert de ajuda
 Mousetrap.bind('?', function(e, combo) {

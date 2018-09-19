@@ -6,7 +6,7 @@ require 'parser'
 
 use Rack::Deflater
 
-ENV['version'] = "3.7.3"
+ENV['version'] = "3.8.0"
 
 # ROUTES
 get '/:num?/?' do
