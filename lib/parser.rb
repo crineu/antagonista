@@ -7,7 +7,7 @@ module NewsListCleaner
       next if article.at_xpath('./div/a/@data-link').nil?   # remove falsas notícias
       data = {}
       data[:full_path]  = article.at_xpath('./div/a/@data-link').value
-      data[:local_path] = data[:full_path].split('gonista.com/').last
+      data[:local_path] = 'api/v1/' + data[:full_path].split('gonista.com/').last
       data[:title]      = article.at_xpath('./div/a/@data-title').value
       data[:date]       = article.at_xpath('./div/a/span/time/@datetime').value
       list << data

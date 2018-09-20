@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 require 'sinatra'
+require 'json'
 
 require 'crawler'
 require 'parser'
 
 use Rack::Deflater
 
-ENV['version'] = "3.8.1"
+ENV['version'] = "3.9.0"
+
 
 # ROUTES
 get '/:num?/?' do
@@ -20,10 +22,23 @@ get '/:num?/?' do
   erb :main
 end
 
-get '/:categoria/:titulo/?' do
+
+
+# API ROUTES
+get '/api/v1/pagina/:num' do
+  content_type :json
+  NewsListCleaner.clean(
+    WebCrawler.crawlAntaNewsList(
+      params[:num].to_i
+    )
+  ).to_json
+end
+
+get '/api/v1/:categoria/:titulo/?' do
+  content_type :json
   SingleNewsCleaner.clean(
     WebCrawler.crawlAntaSingleNews(
       params[:categoria], params[:titulo]
     )
-  )
+  ).to_json
 end

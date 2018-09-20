@@ -20,7 +20,7 @@ function load_content_via_ajax(element) {
 	request.onload = function() {
 	  if (request.status >= 200 && request.status < 400) {
 	    // Success!
-	    element.outerHTML = request.responseText;
+	    element.outerHTML = JSON.parse(request.responseText);
 	  } else {
 	    // We reached our target server, but it returned an error
 	    console.error("Servidor respondeu com erro em " + api_path);

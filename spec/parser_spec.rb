@@ -1,3 +1,4 @@
+require 'json'
 require 'parser'
 require 'crawler'
 
@@ -5,13 +6,16 @@ RSpec.describe NewsListCleaner do
 
   it 'shows list of news for page 10' do
     sample_element = {
-      full_path:  'https://www.oantagonista.com/brasil/manter-lula-nas-pesquisas-e-estrategia-ou-estelionato/',
-      local_path: 'brasil/manter-lula-nas-pesquisas-e-estrategia-ou-estelionato/',
-      title:      'Manter Lula nas pesquisas é estratégia ou estelionato?',
-      date:       '2018-06-11 15:08:32'
+      "full_path"  => 'https://www.oantagonista.com/brasil/manter-lula-nas-pesquisas-e-estrategia-ou-estelionato/',
+      "local_path" => 'api/v1/brasil/manter-lula-nas-pesquisas-e-estrategia-ou-estelionato/',
+      "title"      => 'Manter Lula nas pesquisas é estratégia ou estelionato?',
+      "date"       => '2018-06-11 15:08:32'
     }
-    news = NewsListCleaner.clean(FileCrawler.crawl(File.expand_path('pagina10.html', __dir__)))
+    
+    json = NewsListCleaner.clean(FileCrawler.crawl(File.expand_path('pagina10.html', __dir__))).to_json
+    expect(json).to be_instance_of String
 
+    news = JSON.parse(json)
     expect(news).to be_instance_of Array
     expect(news.length).to eq 6
     expect(news).to include sample_element

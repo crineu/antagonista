@@ -8,4 +8,5 @@ gem 'puma',    '~> 3.0'
 
 group :test do
   gem 'rspec', '~> 3.0'
+  gem 'rack-test'
 end
