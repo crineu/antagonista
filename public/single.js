@@ -1,42 +1,87 @@
 
 document.addEventListener("DOMContentLoaded", function(event) {
+  loadNewsList(document.querySelector('#page').dataset.page);
 
-  // Varre as notícias com 'js-placeholder' e carrega notícias
-  var elements = document.querySelectorAll('a.js-placeholder');
-  Array.prototype.forEach.call(elements, function(element, index) {
-    load_content_via_ajax(element)
+  // Adiciona listeners para a navegacao entre páginas
+  document.getElementById('nav_prev').addEventListener('click', function(event) {
+    loadPage(this);
+  });
+  document.getElementById('nav_next').addEventListener('click', function(event) {
+    loadPage(this);
   });
 
 });
 
 
-// Substitui links pelo conteúdo das notícias usando ajax
-function load_content_via_ajax(element) {
-	var api_path = element.getAttribute('href')
-	var request  = new XMLHttpRequest();
-	
-	request.open('GET', api_path, true);
-
-	request.onload = function() {
-	  if (request.status >= 200 && request.status < 400) {
-	    // Success!
-	    element.outerHTML = JSON.parse(request.responseText);
-	  } else {
-	    // We reached our target server, but it returned an error
-	    console.error("Servidor respondeu com erro em " + api_path);
-	    return false;
-	  }
-	};
-
-	request.onerror = function() {
-	  console.error("Falha ao tentar carregar " + api_path);
-	  return false;
-	};
-
-	request.send();
+function loadPage(element) {
+  var next_page = element.dataset.page;
+  loadNewsList(next_page);
 }
 
 
+// Carrega lista de notícias conforme número da página
+function loadNewsList(page_number) {
+  document.getElementById('page').dataset.page     = page_number;
+  var prevBtn = document.getElementById('nav_prev');
+  var nextBtn = document.getElementById('nav_next');
+  prevBtn.dataset.page = parseInt(page_number) - 1;
+  nextBtn.dataset.page = parseInt(page_number) + 1;
+  prevBtn.innerHTML = '<- ' + prevBtn.dataset.page;
+  nextBtn.innerHTML = nextBtn.dataset.page + ' ->';
+
+
+  var request  = new XMLHttpRequest(); 
+  request.open('GET', '/api/v1/pagina/' + page_number, true);
+  request.onload = function() {
+    if (request.status >= 200 && request.status < 400) {
+      var list = JSON.parse(request.responseText);
+      
+      list.forEach(function(element, index) {
+        loadContent(element, index);
+      });
+
+    } else {
+      console.error("Servidor respondeu com erro em /api/v1/pagina/" + page_number);
+      return false;
+    }
+  };
+  request.onerror = function() {
+    console.error("Falha ao tentar carregar /api/v1/pagina/" + page_number);
+    return false;
+  };
+  request.send();
+}
+
+
+// Substitui template '#article1' pelo conteúdo das notícias usando ajax
+function loadContent(data, id) {
+  var article = document.querySelector('#article' + id);
+
+  article.querySelector('#path'  + id).href      = data['full_path'];
+  article.querySelector('#title' + id).innerHTML = data['title'];
+  article.querySelector('#date'  + id).innerHTML = data['date'];
+  
+  var request  = new XMLHttpRequest();
+  request.open('GET', data['local_path'], true);
+  request.onload = function() {
+    if (request.status >= 200 && request.status < 400) {
+      article.querySelector('#content' + id).innerHTML = JSON.parse(request.responseText);
+    } else {
+      console.error("Servidor respondeu com erro em " + data['local_path']);
+      return false;
+    }
+  };
+  request.onerror = function() {
+    console.error("Falha ao tentar carregar " + data['local_path']);
+    return false;
+  };
+  request.send();
+}
+
+
+
+
+/******************************************/
 /* mousetrap v1.6.2 craig.is/killing/mice */
 (function(p,t,h){function u(a,b,d){a.addEventListener?a.addEventListener(b,d,!1):a.attachEvent("on"+b,d)}function y(a){if("keypress"==a.type){var b=String.fromCharCode(a.which);a.shiftKey||(b=b.toLowerCase());return b}return m[a.which]?m[a.which]:q[a.which]?q[a.which]:String.fromCharCode(a.which).toLowerCase()}function E(a){var b=[];a.shiftKey&&b.push("shift");a.altKey&&b.push("alt");a.ctrlKey&&b.push("ctrl");a.metaKey&&b.push("meta");return b}function v(a){return"shift"==a||"ctrl"==a||"alt"==a||
 "meta"==a}function z(a,b){var d,e=[];var c=a;"+"===c?c=["+"]:(c=c.replace(/\+{2}/g,"+plus"),c=c.split("+"));for(d=0;d<c.length;++d){var k=c[d];A[k]&&(k=A[k]);b&&"keypress"!=b&&B[k]&&(k=B[k],e.push("shift"));v(k)&&e.push(k)}c=k;d=b;if(!d){if(!n){n={};for(var h in m)95<h&&112>h||m.hasOwnProperty(h)&&(n[m[h]]=h)}d=n[c]?"keydown":"keypress"}"keypress"==d&&e.length&&(d="keydown");return{key:k,modifiers:e,action:d}}function C(a,b){return null===a||a===t?!1:a===b?!0:C(a.parentNode,b)}function e(a){function b(a){a=
@@ -53,7 +98,7 @@ arguments)}}(b))};e.init();p.Mousetrap=e;"undefined"!==typeof module&&module.exp
 
 // alert de ajuda
 Mousetrap.bind('?', function(e, combo) {
-	alert("[ j | k ] => navegar pelos posts\n[ p | n ] => navegar pelas páginas")
+  alert("[ j | k ] => navegar pelos posts\n[ p | n ] => navegar pelas páginas")
 });
 
 // location.href     = "http://localhost:5000/2"
@@ -68,69 +113,69 @@ Mousetrap.bind('k', function(e, combo) { jkNavigateBackward(); });
 
 
 function npNavigate(increment) {
-	var page_number = parseInt(location.pathname.slice(1));
-	if (isNaN(page_number)) { page_number = 1; }
+  // var page_number = parseInt(location.pathname.slice(1));
+  // if (isNaN(page_number)) { page_number = 1; }
 
-	var next_page = page_number + increment;
-	if (next_page < 1) { return false; }
-	location.href = location.origin + '/' + next_page
+  // var next_page = page_number + increment;
+  // if (next_page < 1) { return false; }
+  // location.href = location.origin + '/' + next_page
 }
 
 function addClass(element, className) {
-	if (element.classList)
-	  element.classList.add(className);
-	else
-	  element.className += ' ' + className;
+  if (element.classList)
+    element.classList.add(className);
+  else
+    element.className += ' ' + className;
 }
 
 function removeClass(element, className) {
-	if (element.classList)
-	  element.classList.remove(className);
-	else
-	  element.className = selected.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+  if (element.classList)
+    element.classList.remove(className);
+  else
+    element.className = selected.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
 }
 
 
 function jkNavigateForward() {
-	// var selectables = $('[data-selectable]:visible');
-	var selectables = document.querySelectorAll('[data-selectable]')
-	if (selectables.length == 0) {return false; }
+  // var selectables = $('[data-selectable]:visible');
+  var selectables = document.querySelectorAll('[data-selectable]')
+  if (selectables.length == 0) {return false; }
 
-	var first    = selectables[0];
-	var last     = selectables[selectables.length - 1];
-	var selected = document.querySelector('.jkselected');
+  var first    = selectables[0];
+  var last     = selectables[selectables.length - 1];
+  var selected = document.querySelector('.jkselected');
 
-	if (selected == last) { return false; }
+  if (selected == last) { return false; }
 
-	if (selected == null) {
-		next = first;
-	} else {
-		removeClass(selected, 'jkselected');
-		next = selected.nextElementSibling;
-	}
+  if (selected == null) {
+    next = first;
+  } else {
+    removeClass(selected, 'jkselected');
+    next = selected.nextElementSibling;
+  }
 
-	addClass(next, 'jkselected');
-	next.scrollIntoView();
+  addClass(next, 'jkselected');
+  next.scrollIntoView();
 }
 
 function jkNavigateBackward() {
-	var selectables = document.querySelectorAll('[data-selectable]')
-	if (selectables.length == 0) {return false; }
+  var selectables = document.querySelectorAll('[data-selectable]')
+  if (selectables.length == 0) {return false; }
 
-	var first    = selectables[0];
-	var last     = selectables[selectables.length - 1];
-	var selected = document.querySelector('.jkselected');
+  var first    = selectables[0];
+  var last     = selectables[selectables.length - 1];
+  var selected = document.querySelector('.jkselected');
 
-	if (selected == first) { return false; }
+  if (selected == first) { return false; }
 
-	if (selected == null) {
-		next = last;
-	} else {
-		removeClass(selected, 'jkselected');
-		next = selected.previousElementSibling;
-	}
+  if (selected == null) {
+    next = last;
+  } else {
+    removeClass(selected, 'jkselected');
+    next = selected.previousElementSibling;
+  }
 
-	addClass(next, 'jkselected');
-	next.scrollIntoView();
+  addClass(next, 'jkselected');
+  next.scrollIntoView();
 }
 

@@ -37,12 +37,12 @@ iframe, twitterwidget {
   position: static !important;
 }
 
-header, footer.data, p {
+header, footer.date, p {
   padding: 24px 54px;
 }
 
 @media screen and (max-width: 600px) {
-  header, footer.data, p {
+  header, footer.date, p {
     padding: 24px 16px;
   }
 }
@@ -58,7 +58,7 @@ header {
   color: #00ab6b;
 }
 
-footer.data {
+footer.date {
   box-sizing:     border-box;
   margin-top:     24px;
   padding-top:    10px;
@@ -86,7 +86,8 @@ p + p {
 a {
   text-decoration: none;
 }
-a.navegacao {
+
+span.navegacao {
   position: fixed;
   top:      6px;
   left:     4px;
@@ -100,7 +101,7 @@ a.navegacao {
   color: white;
   background: #456990;
 }
-a.proxima {
+span.proxima {
   left: 80px;
 }
 

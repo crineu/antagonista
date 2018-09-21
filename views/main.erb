@@ -8,22 +8,20 @@
 </head>
 <body>
 
-    <% if @anterior %>
-        <a href="/<%= @anterior %>" class="navegacao"><-<%= @anterior %></a>
-    <% end %>
-    <a href="/<%= @proxima %>" class="navegacao proxima"><%= @proxima %>-></a>
+    <span id='page' data-page='<%= @page %>'></span>
+
+    <button id='nav_prev' data-page='<%= @page_prev %>' class='navegacao'> <- </button>
+    <button id='nav_next' data-page='<%= @page_next %>' class='navegacao proxima'> -> </button>
 
 
-
-    <% @news.reverse.each do |noticia| %>
-        <article data-selectable="">
-            <a href="<%= noticia[:full_path] %>" target="_blank">
-                <header> <%= noticia[:title] %> </header>
+    <% (0..5).each do |index| %>
+        <article id='article<%=index%>' data-selectable=''>
+            <a id='path<%=index%>' href='' target="_blank">
+                <header id='title<%=index%>'> </header>
             </a>
-            <div class="conteudo">
-                <a href='<%= noticia[:local_path] %>' class="js-placeholder"> <%= noticia[:local_path] %> </a>
+            <div id="content<%=index%>">
             </div>
-            <footer class="data"> <%= noticia[:date] %> </footer>
+            <footer id='date<%=index%>' class="date"> </footer>
         </article>
     <% end %>
 
@@ -32,7 +30,8 @@
     <footer class="version"><%= ENV['version'] %></footer>
 
     <% # JAVASCRIPT %>
-    <script type="text/javascript" src="<%= url('/single.js') %>" >        </script>
+    <script type="text/javascript" src="<%= url('/single.js') %>" >
+    </script>
 
 </body>
 </html>
