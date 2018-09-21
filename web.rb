@@ -7,11 +7,11 @@ require 'parser'
 
 use Rack::Deflater
 
-ENV['version'] = "3.9.1"
+ENV['version'] = "3.9.2"
 
 
 
-get '/:num?/?' do
+get '/:num?' do
   page_requested = params[:num].to_i
   page_requested = 1 if page_requested < 1
 
