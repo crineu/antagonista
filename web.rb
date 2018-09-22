@@ -7,22 +7,13 @@ require 'parser'
 
 use Rack::Deflater
 
-ENV['version'] = "3.9.3"
-
+ENV['version'] = "3.9.4"
 
 
 get '/:num?' do
-  page_requested = params[:num].to_i
-  page_requested = 1 if page_requested < 1
-
-  # @news     = NewsListCleaner.clean(WebCrawler.crawlAntaNewsList(page_requested))
-  @page      = page_requested
-  @page_next = page_requested + 1
-  @page_prev = page_requested - 1
-
+  @page = [1, params[:num].to_i].max
   erb :main
 end
-
 
 
 # API ROUTES

@@ -104,22 +104,13 @@ Mousetrap.bind('?', function(e, combo) {
 // location.href     = "http://localhost:5000/2"
 // location.origin   = "http://localhost:5000"
 // location.pathname = "/2"
-Mousetrap.bind('n', function(e, combo) { npNavigate(+1); });
-Mousetrap.bind('p', function(e, combo) { npNavigate(-1); });
+Mousetrap.bind('p', function(e, combo) { loadPrevPage(); });
+Mousetrap.bind('n', function(e, combo) { loadNextPage(); });
 
 // scroll usando j / k
 Mousetrap.bind('j', function(e, combo) { jkNavigateForward();  });
 Mousetrap.bind('k', function(e, combo) { jkNavigateBackward(); });
 
-
-function npNavigate(increment) {
-  // var page_number = parseInt(location.pathname.slice(1));
-  // if (isNaN(page_number)) { page_number = 1; }
-
-  // var next_page = page_number + increment;
-  // if (next_page < 1) { return false; }
-  // location.href = location.origin + '/' + next_page
-}
 
 function addClass(element, className) {
   if (element.classList)
