@@ -14,16 +14,8 @@
     <button id='nav_next' class='navigation next'> -> </button>
 
 
-    <% (0..5).each do |index| %>
-        <article id='article<%=index%>' data-selectable=''>
-            <a id='path<%=index%>' href='' target="_blank">
-                <header id='title<%=index%>'> </header>
-            </a>
-            <div id="content<%=index%>">
-            </div>
-            <footer id='date<%=index%>' class="date"> </footer>
-        </article>
-    <% end %>
+
+    <div id="articles"></div>
 
 
 
