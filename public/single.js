@@ -1,27 +1,15 @@
-
+// on page ready...
 document.addEventListener("DOMContentLoaded", function(event) {
   loadNewsList(document.getElementById('page').dataset.page);
 
-  // Adiciona listeners para a navegacao entre páginas
+  // Adiciona listeners para a navegacao entre páginas 
   document.getElementById('nav_prev').addEventListener('click', function(event) {
-    loadPrevPage();
+    loadNewsList(event.target.dataset.page);  // event.target = #nav_prev
   });
   document.getElementById('nav_next').addEventListener('click', function(event) {
-    loadNextPage();
+    loadNewsList(event.target.dataset.page);
   });
-
 });
-
-
-function loadPrevPage() {
-  var page = document.getElementById('page').dataset.page;
-  loadNewsList(parseInt(page) - 1);
-}
-function loadNextPage() {
-  var page = document.getElementById('page').dataset.page;
-  loadNewsList(parseInt(page) + 1);
-}
-
 
 function clearNews() {
   var articles = document.getElementById('articles');
@@ -32,12 +20,19 @@ function clearNews() {
 
 function updateNavButtons(page_number) {
   document.getElementById('page').dataset.page = page_number;
+  
   var prevBtn = document.getElementById('nav_prev');
   var nextBtn = document.getElementById('nav_next');
   prevBtn.dataset.page = parseInt(page_number) - 1;
   nextBtn.dataset.page = parseInt(page_number) + 1;
+  nextBtn.innerHTML = nextBtn.dataset.page + ' ->';
   prevBtn.innerHTML = '<- ' + prevBtn.dataset.page;
-  nextBtn.innerHTML = nextBtn.dataset.page + ' ->';    
+  prevBtn.hidden = false;  
+
+  if (page_number == 1) {
+    prevBtn.hidden = true;
+    prevBtn.innerHTML = '';
+  }
 }
 
 // Carrega lista de notícias conforme número da página
