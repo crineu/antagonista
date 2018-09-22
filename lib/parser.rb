@@ -12,7 +12,7 @@ module NewsListCleaner
       data[:date]       = article.at_xpath('./div/a/span/time/@datetime').value
       list << data
     end
-    list
+    list.reverse  # older up, newer at bottom
   end
 end
 
