@@ -7,7 +7,7 @@ require 'parser'
 
 use Rack::Deflater
 
-ENV['version'] = "3.9.6"
+ENV['version'] = "3.9.7"
 
 
 get '/:num?' do

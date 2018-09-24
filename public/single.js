@@ -11,12 +11,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 });
 
-function clearNews() {
-  var articles = document.getElementById('articles');
-  while (articles.firstChild) {
-    articles.removeChild(articles.firstChild);
-  }
-}
 
 function updateNavButtons(page_number) {
   document.getElementById('page').dataset.page = page_number;
@@ -35,9 +29,18 @@ function updateNavButtons(page_number) {
   }
 }
 
+// Limpa lista de notícias
+function clearNews(placeholder) {
+  while (placeholder.firstChild) {
+    placeholder.removeChild(placeholder.firstChild);
+  }
+}
+
 // Carrega lista de notícias conforme número da página
 function loadNewsList(page_number) {
-  clearNews();
+  var articlesPlaceholder = document.getElementById('articles');
+  
+  clearNews(articlesPlaceholder);
 
   var request  = new XMLHttpRequest(); 
   request.open('GET', '/api/v1/pagina/' + page_number, true);
@@ -46,7 +49,7 @@ function loadNewsList(page_number) {
       var list = JSON.parse(request.responseText);
       
       list.forEach(function(element, index) {
-        loadContent(element, index);
+        articlesPlaceholder.appendChild(createNewsInHTML(element, index));
       });
 
     } else {
@@ -64,45 +67,50 @@ function loadNewsList(page_number) {
 }
 
 
-// Substitui template '#article1' pelo conteúdo das notícias usando ajax
-function loadContent(data, id) {
-  var article, title, header, content, footer;
-  
-  header = document.createElement('header');
+// Cria html esqueleto da notícia com espaço para conteúdo (#content[n])
+function createNewsInHTML(data, id) {
+  var header = document.createElement('header');
   header.appendChild(document.createTextNode(data['title']));
-  title = document.createElement('a');
+  var title = document.createElement('a');
   title.setAttribute('href', data['full_path']);
   title.setAttribute('target', '_blank');
   title.appendChild(header);
 
-  content = document.createElement('div');
+  var gif = document.createElement('img');
+  gif.setAttribute('src', 'loading.gif');
+  var paragraph = document.createElement('p');
+  paragraph.appendChild(gif);
+  var content = document.createElement('div');
   content.setAttribute('id', 'content' + id);
+  content.appendChild(paragraph);
 
-  footer = document.createElement('footer');
+  var footer = document.createElement('footer');
   footer.setAttribute('class', 'date');
   footer.appendChild(document.createTextNode(data['date']));
 
-  article = document.createElement('article');
+  var article = document.createElement('article');
   article.setAttribute('data-selectable', '');
   article.appendChild(title);
   article.appendChild(content);
   article.appendChild(footer);
   
+  fillContentPlaceholder(content, data['local_path']);
+  return article;
+}
 
-  document.getElementById('articles').append(article);
-  
+function fillContentPlaceholder(placeholder, data_path) {
   var request  = new XMLHttpRequest();
-  request.open('GET', data['local_path'], true);
+  request.open('GET', data_path, true);
   request.onload = function() {
     if (request.status >= 200 && request.status < 400) {
-      document.getElementById('content' + id).innerHTML = JSON.parse(request.responseText);
+      placeholder.innerHTML = JSON.parse(request.responseText);
     } else {
-      console.error("Servidor respondeu com erro em " + data['local_path']);
+      console.error(`Servidor respondeu com erro em ${data_path}`);
       return false;
     }
   };
   request.onerror = function() {
-    console.error("Falha ao tentar carregar " + data['local_path']);
+    console.error(`Falha ao tentar carregar ${data_path}`);
     return false;
   };
   request.send();
