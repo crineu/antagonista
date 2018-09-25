@@ -142,8 +142,8 @@ Mousetrap.bind('?', function(e, combo) {
 // location.href     = "http://localhost:5000/2"
 // location.origin   = "http://localhost:5000"
 // location.pathname = "/2"
-Mousetrap.bind('p', function(e, combo) { loadPrevPage(); });
-Mousetrap.bind('n', function(e, combo) { loadNextPage(); });
+Mousetrap.bind('p', function(e, combo) { document.getElementById('nav_prev').click(); });
+Mousetrap.bind('n', function(e, combo) { document.getElementById('nav_next').click(); });
 
 // scroll usando j / k
 Mousetrap.bind('j', function(e, combo) { jkNavigateForward();  });
