@@ -9,7 +9,7 @@ GEM
       ast
       ruby-ll (~> 2.1)
     puma (3.12.0)
-    rack (2.0.5)
+    rack (2.0.6)
     rack-protection (2.0.4)
       rack
     rack-test (1.1.0)
@@ -43,6 +43,7 @@ PLATFORMS
 DEPENDENCIES
   oga (~> 2.14)
   puma (~> 3.0)
+  rack (~> 2.0.6)
   rack-test
   rspec (~> 3.0)
   sinatra (~> 2)
