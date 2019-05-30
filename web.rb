@@ -7,9 +7,6 @@ require 'parser'
 
 use Rack::Deflater
 
-ENV['version'] = "3.9.10"
-
-
 get '/:num?' do
   @page = [1, params[:num].to_i].max
   erb :main
