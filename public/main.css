@@ -10,6 +10,19 @@ body {
   background: #d5dad5;
 }
 
+a {
+  text-decoration: none;
+}
+
+p {
+  font-size:      17px;
+  line-height:    138%;
+  letter-spacing: 0.2px;
+}
+p + p {
+  margin-top: 1.2em;
+}
+
 article {
   color:            rgba(0, 0, 0, 0.8);
   background-color: white;
@@ -24,26 +37,26 @@ article {
   font-family: "Work Sans", Verdana, sans-serif;
 }
 
-.current {
-  margin: 22px 2px;
-  border: 2px #00A0B0 solid;
-}
-
-img, iframe {
+iframe, img {
   max-width: 100% !important;
 }
+iframe {
+  height: 600px;
+}
 iframe, twitterwidget {
-  padding: 0px 54px !important;
   position: static !important;
+  /*padding: 0px 54px !important;*/
 }
 
 header, footer.date, p {
-  padding: 24px 54px;
+  padding-left:  54px;
+  padding-right: 54px;
 }
 
 @media screen and (max-width: 600px) {
-  header, footer.date, p {
-    padding: 24px 16px;
+  header, footer.date {
+    padding-left:  16px;
+    padding-right: 16px;
   }
 }
 
@@ -53,6 +66,8 @@ header {
   font-variant:   small-caps;
   letter-spacing: 0.4px;
   line-height:    24px;
+  padding-top:    24px;
+  padding-bottom: 24px;
 
   font-family: "Alegreya", Georgia, Arial, sans-serif;
   color: #00ab6b;
@@ -71,20 +86,9 @@ footer.date {
   background-color: rgba(97, 255, 160, 0.8);
 }
 
-p {
-  font-size:      17px;
-  line-height:    138%;
-  letter-spacing: 0.2px;
-
-  padding-top:    0;
-  padding-bottom: 0;
-}
-p + p {
-  margin-top: 1.2em;
-}
-
-a {
-  text-decoration: none;
+.current {
+  margin: 22px 2px;
+  border: 2px #00A0B0 solid;
 }
 
 button.navigation {
