@@ -1,29 +1,32 @@
 <html>
 <head>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya|Work+Sans">
-    <link rel="stylesheet" href="main.css" type="text/css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya|Work+Sans">
+  <link rel="stylesheet" href="main.css" type="text/css">
 
-    <title>O Antagonista</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O Antagonista</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
 
-    <span id='page' data-page='<%= @page %>'></span>
+  <span id='page' data-page='<%= @page %>'></span>
 
-    <button id='nav_prev' class='navigation'> <- </button>
-    <button id='nav_next' class='navigation next'> -> </button>
-
-
-
-    <div id="articles"></div>
+  <button id='nav_prev' class='navigation'> <- </button>
+  <button id='nav_next' class='navigation next'> -> </button>
 
 
 
-    <footer class="version"><%= ENV['version'] %></footer>
+  <div id="articles"></div>
 
-    <% # JAVASCRIPT %>
-    <script type="text/javascript" src="<%= url('/single.js') %>" >
-    </script>
+
+
+  <footer class="version">
+    <%= ENV['version'] %>
+    <%= " - #{ENV['HEROKU_RELEASE_VERSION']}" if ENV['HEROKU_RELEASE_VERSION'] %>
+  </footer>
+
+  <% # JAVASCRIPT %>
+  <script type="text/javascript" src="<%= url('/single.js') %>" >
+  </script>
 
 </body>
 </html>
