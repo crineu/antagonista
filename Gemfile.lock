@@ -8,9 +8,9 @@ GEM
     oga (2.15)
       ast
       ruby-ll (~> 2.1)
-    puma (3.12.0)
-    rack (2.0.6)
-    rack-protection (2.0.4)
+    puma (3.12.1)
+    rack (2.0.7)
+    rack-protection (2.0.5)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -30,12 +30,12 @@ GEM
     ruby-ll (2.1.2)
       ansi
       ast
-    sinatra (2.0.4)
+    sinatra (2.0.5)
       mustermann (~> 1.0)
       rack (~> 2.0)
-      rack-protection (= 2.0.4)
+      rack-protection (= 2.0.5)
       tilt (~> 2.0)
-    tilt (2.0.8)
+    tilt (2.0.9)
 
 PLATFORMS
   ruby
