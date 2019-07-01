@@ -4,6 +4,26 @@
   padding: 0;
 }
 
+/* work-sans-regular - latin */
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Work Sans'), local('WorkSans-Regular'),
+       url('./work-sans-v4-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('./work-sans-v4-latin-regular.woff')  format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* work-sans-700 - latin */
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Work Sans Bold'), local('WorkSans-Bold'),
+       url('./work-sans-v4-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('./work-sans-v4-latin-700.woff')  format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
 body {
   margin:     0 auto;
   max-width:  800px;
@@ -64,12 +84,12 @@ header {
   font-size:      26px;
   font-weight:    bold;
   font-variant:   small-caps;
-  letter-spacing: 0.4px;
+  letter-spacing: -0.2px;
   line-height:    24px;
   padding-top:    24px;
-  padding-bottom: 24px;
+  padding-bottom: 16px;
 
-  font-family: "Alegreya", Georgia, Arial, sans-serif;
+  font-family: "Work Sans", Georgia, Arial, sans-serif;
   color: #00ab6b;
 }
 
