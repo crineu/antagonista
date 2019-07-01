@@ -8,25 +8,31 @@
 </head>
 <body>
 
-  <span id='page' data-page='<%= @page %>'></span>
+  <% if @prev_page %>
+    <a class="navigation"    href="/<%= @prev_page %>"><%= @prev_page %> <- </a>
+  <% end %>
+  <a class="navigation next" href="/<%= @next_page %>"><%= @next_page %> -> </a>
 
-  <button id='nav_prev' class='navigation'> <- </button>
-  <button id='nav_next' class='navigation next'> -> </button>
 
+  <% @news_list.each do |news| %>
 
+    <article>
+      <a href=<%= news[:full_path] %> target="_blank">
+        <header><%= news[:title] %></header>
+      </a>
 
-  <div id="articles"></div>
+      <div><%= news[:content] %></div>
 
+      <footer class="date"><%= news[:date] %></footer>
+    </article>
+
+  <% end %>
 
 
   <footer class="version">
     <%= ENV['version'] %>
     <%= " - #{ENV['HEROKU_RELEASE_VERSION']}" if ENV['HEROKU_RELEASE_VERSION'] %>
   </footer>
-
-  <% # JAVASCRIPT %>
-  <script type="text/javascript" src="<%= url('/single.js') %>" >
-  </script>
 
 </body>
 </html>

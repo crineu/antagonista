@@ -86,12 +86,7 @@ footer.date {
   background-color: rgba(97, 255, 160, 0.8);
 }
 
-.current {
-  margin: 22px 2px;
-  border: 2px #00A0B0 solid;
-}
-
-button.navigation {
+a.navigation {
   position: fixed;
   top:      6px;
   left:     4px;
@@ -106,7 +101,7 @@ button.navigation {
   color: white;
   background: #456990;
 }
-button.next {
+a.next {
   left: 80px;
 }
 
@@ -117,11 +112,4 @@ footer.version {
 
   font-size: 12px;
   color:     #798779;
-}
-
-.jkselected {
-  border-left:  4px solid #456990;
-  border-right: 4px solid #456990;
-  margin-left:  0px;
-  margin-right: 0px;
 }

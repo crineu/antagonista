@@ -15,10 +15,6 @@ module WebCrawler
   def self.crawlAntaNewsList(page_number)
     crawl("#{DOMAIN}/pagina/#{page_number}")
   end
-
-  def self.crawlAntaSingleNews(category, title)
-    crawl("#{DOMAIN}/#{category}/#{title}")
-  end
 end
 
 

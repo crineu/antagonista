@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require 'sinatra'
-require 'json'
 
 require 'crawler'
 require 'parser'
@@ -8,26 +7,33 @@ require 'parser'
 use Rack::Deflater
 
 get '/:num?' do
-  @page = [1, params[:num].to_i].max
-  erb :main
-end
+  @page = params[:num].to_i
 
+  if @page < 2
+    @page = 1
+    @next_page = @page + 1
+  else
+    @prev_page = @page - 1
+    @next_page = @page + 1
+  end
 
-# API ROUTES
-get '/api/v1/pagina/:num' do
-  content_type :json
-  NewsListCleaner.clean(
+  @news_list = NewsListCleaner.clean(
     WebCrawler.crawlAntaNewsList(
-      params[:num].to_i
+      @page
     )
-  ).to_json
-end
+  )
 
-get '/api/v1/:categoria/:titulo/?' do
-  content_type :json
-  SingleNewsCleaner.clean(
-    WebCrawler.crawlAntaSingleNews(
-      params[:categoria], params[:titulo]
-    )
-  ).to_json
+  threads = []
+  @news_list.each do |single_news|
+    threads << Thread.new(single_news) do |news|
+      news[:content] = SingleNewsCleaner.clean(
+        WebCrawler.crawl(
+          news[:full_path]
+        )
+      )
+    end
+  end
+  threads.each { |t| t.join }
+
+  erb :main
 end
