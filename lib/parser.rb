@@ -18,11 +18,15 @@ end
 module SingleNewsCleaner
   def self.clean(bloated_html)
     bloated_html
-      .at_xpath('//div[@id="entry-text-post"]')             # carrega conteúdo da notícia
-      .children.select { |c| c.class == Oga::XML::Element } # filtra apenas os elementos
-      .map(&:to_xml)                                        # transforma em xml
-      .join
-    rescue NoMethodError
+      .at_xpath('//div[@id="entry-text-post"]')    # carrega conteúdo da notícia
+      .children
+      .select { |c| c.class == Oga::XML::Element } # filtra apenas elementos
+      .select { |e| e.name  == "p"               } # do tipo "<p></p>"
+      .map(&:text)                                 # extrai o texto interno
+      .map(&:strip)                                # remove espaços
+      .reject { |e| e.nil? || e.empty? }           # e elimina entradas vazias
+    rescue NoMethodError => nme
+      p nme
       false
   end
 end

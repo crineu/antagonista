@@ -20,7 +20,7 @@
         <header><%= news[:title] %></header>
       </a>
 
-      <div><%= news[:content] %></div>
+      <%= news[:content].map { |line| "<p>#{line}</p>" }.join %>
 
       <footer class="date"><%= news[:date] %></footer>
     </article>
