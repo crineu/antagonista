@@ -8,30 +8,30 @@
 <body>
 
   <% if @prev_page %>
-    <a class="navigation"    href="/<%= @prev_page %>"><%= @prev_page %> <- </a>
+    <a class="navigation"    href="/<%= @prev_page %>"><%= @prev_page %> <-</a>
   <% end %>
-  <a class="navigation next" href="/<%= @next_page %>"><%= @next_page %> -> </a>
+  <a class="navigation next" href="/<%= @next_page %>">-> <%= @next_page %></a>
 
 
   <% @news_list.each do |news| %>
 
     <article>
       <a href=<%= news[:full_path] %> target="_blank">
-        <header><%= news[:title] %></header>
+        <div class="header"><%= news[:title] %></div>
       </a>
 
       <%= news[:content].map { |line| "<p>#{line}</p>" }.join %>
 
-      <footer class="date"><%= news[:date] %></footer>
+      <div class="date"><%= news[:date] %></div>
     </article>
 
   <% end %>
 
 
-  <footer class="version">
+  <div class="version">
     <%= ENV['version'] %>
     <%= " - #{ENV['HEROKU_RELEASE_VERSION']}" if ENV['HEROKU_RELEASE_VERSION'] %>
-  </footer>
+  </div>
 
 </body>
 </html>

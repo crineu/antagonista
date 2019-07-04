@@ -1,135 +1,99 @@
-/* http://www.colourlovers.com/palette/1473/Ocean_Five */
 * {
   margin: 0;
   padding: 0;
+  font-family: "Consolas", "Liberation Mono", "Courier New", monospace;
 }
 
-/* work-sans-regular - latin */
-@font-face {
-  font-family: 'Work Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Work Sans'), local('WorkSans-Regular'),
-       url('./work-sans-v4-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('./work-sans-v4-latin-regular.woff')  format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
+/*
+Solarized Colors
+$base03:    #002b36;
+$base02:    #073642;
+$base01:    #586e75;
+$base00:    #657b83;
+$base0:     #839496;
+$base1:     #93a1a1;
+$base2:     #eee8d5;
+$base3:     #fdf6e3;
+$yellow:    #b58900;
+$orange:    #cb4b16;
+$red:       #dc322f;
+$magenta:   #d33682;
+$violet:    #6c71c4;
+$blue:      #268bd2;
+$cyan:      #2aa198;
+$green:     #859900;
+*/
+body         { color: #839496; /* base0  */ }
+a            { color: inherit; }
+div.header   { color: #b58900; /* yellow */ }
+div.date     { color: #268bd2; /* orange */ }
+div.version  { color: #93a1a1; /* base1  */ }
 
-/* work-sans-700 - latin */
-@font-face {
-  font-family: 'Work Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Work Sans Bold'), local('WorkSans-Bold'),
-       url('./work-sans-v4-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('./work-sans-v4-latin-700.woff')  format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
+body         { background-color: #002b36; /* base03 */ }
+a.navigation { background-color: #073642; /* base02 */ }
+article      { background-color: #073642; /* base02 */ }
 
+article {         box-shadow: #839496 0px 0px 16px 0px; /* yellow */ }
+article { -webkit-box-shadow: #839496 0px 0px 16px 0px; /* yellow */ }
+
+/* POSITION */
 body {
   margin:     0 auto;
-  max-width:  800px;
-  background: #d5dad5;
+  max-width:  860px;
 }
 
-a {
-  text-decoration: none;
+article {
+  margin: 24px 4px;
+  line-height: 24px;
 }
 
 p {
   font-size:      17px;
   line-height:    138%;
   letter-spacing: 0.2px;
-}
-p + p {
-  margin-top: 1.2em;
+  margin-top:     1.2em;
 }
 
-article {
-  color:            rgba(0, 0, 0, 0.8);
-  background-color: white;
-
-  margin: 24px 4px;
-          box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 1px 0px;
-          border-top-left-radius: 8px;
-     -moz-border-top-left-radius: 8px;
-  -webkit-border-top-left-radius: 8px;
-  line-height: 24px;
-  font-family: "Work Sans", Verdana, sans-serif;
-}
-
-iframe, img {
-  max-width: 100% !important;
-}
-iframe {
-  height: 600px;
-}
-iframe, twitterwidget {
-  position: static !important;
-  /*padding: 0px 54px !important;*/
-}
-
-header, footer.date, p {
+div.header, div.date, p {
   padding-left:  54px;
   padding-right: 54px;
 }
 
-@media screen and (max-width: 600px) {
-  header, footer.date {
+@media screen and (max-width: 660px) {
+  div.header, div.date {
     padding-left:  16px;
     padding-right: 16px;
   }
 }
 
-header {
+div.header {
   font-size:      26px;
   font-weight:    bold;
   font-variant:   small-caps;
   letter-spacing: -0.2px;
-  line-height:    24px;
   padding-top:    24px;
-  padding-bottom: 16px;
-
-  font-family: "Work Sans", Georgia, Arial, sans-serif;
-  color: #00ab6b;
 }
 
-footer.date {
-  box-sizing:     border-box;
-  margin-top:     24px;
-  padding-top:    10px;
-  padding-bottom: 10px;
+div.date {
+  padding-top:    16px;
+  padding-bottom: 16px;
 
-  font-size:  small;
+  font-size:  medium;
   text-align: right;
-
-  color:            rgba(0,  138,  55, 0.8);
-  background-color: rgba(97, 255, 160, 0.8);
 }
 
 a.navigation {
-  position: fixed;
-  top:      6px;
-  left:     4px;
-  padding:  4px 12px;
-  border:   none;
+  padding:  6px 14px;
+  margin-top: 20px;
 
-  font-size:   20px;
-  font-family: monospace;
-          border-radius: 6px;
-  -webkit-border-radius: 6px;
-
-  color: white;
-  background: #456990;
-}
-a.next {
-  left: 80px;
+  font-size:   large;
+  font-weight: bold;
 }
 
-footer.version {
+div.version {
   position: fixed;
   bottom:   4px;
   right:    8px;
 
-  font-size: 12px;
-  color:     #798779;
+  font-size: small;
 }
