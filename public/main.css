@@ -59,8 +59,8 @@ div.header, div.date, p {
   padding-right: 54px;
 }
 
-@media screen and (max-width: 660px) {
-  div.header, div.date {
+@media (max-width: 600px) {
+  div.header, div.date, p {
     padding-left:  16px;
     padding-right: 16px;
   }
