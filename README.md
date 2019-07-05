@@ -12,5 +12,6 @@ O Antagonista, sem o `leia mais...`
 ...para rodar os testes e...
 
     foreman start
+    heroku local
 
 ...para rodar a aplicação.
