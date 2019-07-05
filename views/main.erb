@@ -7,14 +7,19 @@
 </head>
 <body>
 
-  <% if @prev_page %>
-    <a class="navigation"    href="/<%= @prev_page %>"><%= @prev_page %> <-</a>
-  <% end %>
-  <a class="navigation next" href="/<%= @next_page %>">-> <%= @next_page %></a>
+  <%
+    @nav = "<div class='navigation'>"
+    if @prev_page
+      @nav += "<a class='navigation'    href='/#{@prev_page}'>#{@prev_page} <~</a>"
+    end
+    @nav += "<a class='navigation next' href='/#{@next_page}'>~> #{@next_page}</a>"
+    @nav += '</div>'
+  %>
+
+  <%= @nav %>
 
 
   <% @news_list.each do |news| %>
-
     <article>
       <a href=<%= news[:full_path] %> target="_blank">
         <div class="header"><%= news[:title] %></div>
@@ -24,8 +29,10 @@
 
       <div class="date"><%= news[:date] %></div>
     </article>
-
   <% end %>
+
+
+  <%= @nav %>
 
 
   <div class="version">

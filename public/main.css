@@ -48,10 +48,9 @@ article {
 }
 
 p {
-  font-size:      17px;
-  line-height:    138%;
-  letter-spacing: 0.2px;
-  margin-top:     1.2em;
+  font-size:      18px;
+  line-height:    130%;
+  margin-top:     1em;
 }
 
 div.header, div.date, p {
@@ -82,9 +81,13 @@ div.date {
   text-align: right;
 }
 
+div.navigation {
+  margin-top:   12px;
+}
+
 a.navigation {
-  padding:  6px 14px;
-  margin-top: 20px;
+  padding:      6px 14px;
+  margin-right: 16px;
 
   font-size:   large;
   font-weight: bold;
