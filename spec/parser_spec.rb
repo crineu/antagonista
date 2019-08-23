@@ -1,7 +1,7 @@
 require 'parser'
 require 'crawler'
 
-RSpec.describe NewsListCleaner do
+RSpec.describe Cleaner::NewsList do
 
   it 'shows list of news for page 10' do
     sample_element = {
@@ -10,8 +10,8 @@ RSpec.describe NewsListCleaner do
       date:      '2018-06-11 15:08:32'
     }
 
-    news = NewsListCleaner.clean(
-      FileCrawler.crawl(
+    news = Cleaner::NewsList.clean(
+      Crawler::File.crawl(
         File.expand_path('pagina10.html', __dir__)
       )
     )
@@ -24,12 +24,12 @@ RSpec.describe NewsListCleaner do
 end
 
 
-RSpec.describe SingleNewsCleaner do
+RSpec.describe Cleaner::SingleNews do
 
   it 'clean notícia 1' do
     expect(
-      SingleNewsCleaner.clean(
-        FileCrawler.crawl(
+      Cleaner::SingleNews.clean(
+        Crawler::File.crawl(
           File.expand_path('brasil__a-balela-de-juca.html', __dir__)
         )
       )
@@ -44,8 +44,8 @@ RSpec.describe SingleNewsCleaner do
 
   it 'clean notícia 2' do
     expect(
-      SingleNewsCleaner.clean(
-        FileCrawler.crawl(
+      Cleaner::SingleNews.clean(
+        Crawler::File.crawl(
           File.expand_path('brasil__confirmado-lula-sera-preso-na-segunda-feira-26.html', __dir__)
         )
       )
@@ -61,8 +61,8 @@ RSpec.describe SingleNewsCleaner do
 
   it 'clean notícia com tweet' do
     expect(
-      SingleNewsCleaner.clean(
-        FileCrawler.crawl(
+      Cleaner::SingleNews.clean(
+        Crawler::File.crawl(
           File.expand_path('brasil__moro-sou-grato.html', __dir__)
         )
       )
@@ -84,8 +84,8 @@ RSpec.describe SingleNewsCleaner do
 
   it 'clean notícia com vídeo youtube' do
     expect(
-      SingleNewsCleaner.clean(
-        FileCrawler.crawl(
+      Cleaner::SingleNews.clean(
+        Crawler::File.crawl(
           File.expand_path('tv__resumao-antagonista-pimenta-na-lava-jato.html', __dir__)
         )
       )
@@ -94,8 +94,8 @@ RSpec.describe SingleNewsCleaner do
 
   it '/wrong/path returns false' do
     expect(
-      SingleNewsCleaner.clean(
-        FileCrawler.crawl(
+      Cleaner::SingleNews.clean(
+        Crawler::File.crawl(
           File.expand_path('noticia_false_mal_formada.html', __dir__)
         )
       )

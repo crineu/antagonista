@@ -3,7 +3,7 @@ O Antagonista, sem o `leia mais...`
 
 ## Instalação
 
-    bundle install 
+    bundle install [--path vendor/bundle]
 
 ...para baixar as dependências...
 
@@ -11,7 +11,7 @@ O Antagonista, sem o `leia mais...`
 
 ...para rodar os testes e...
 
-    foreman start
     heroku local
+    foreman start
 
 ...para rodar a aplicação.
