@@ -19,6 +19,7 @@
   <%= @nav %>
 
 
+<!-- SINGLE NEWS PARTIAL -->
   <% @news_list.each do |news| %>
     <article>
       <a href=<%= news[:full_path] %> target="_blank">
@@ -30,6 +31,7 @@
       <div class="date"><%= news[:date] %></div>
     </article>
   <% end %>
+<!-- SINGLE NEWS PARTIAL -->
 
 
   <%= @nav %>

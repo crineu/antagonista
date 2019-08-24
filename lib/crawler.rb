@@ -5,14 +5,15 @@ require 'open-uri'
 module Crawler
 
   module Web
+    DOMAIN = 'https://www.oantagonista.com'.freeze
+
     def self.crawl(uri)
-      html = open(uri, open_timeout: 10, redirect: true).read
-      Oga.parse_html(html)
+      Oga.parse_html(
+        open(uri, open_timeout: 10, redirect: true).read
+      )
     rescue OpenURI::HTTPError
       ''
     end
-
-    DOMAIN = 'https://www.oantagonista.com'.freeze
 
     def self.crawlAntaNewsList(page_number)
       crawl("#{DOMAIN}/pagina/#{page_number}")

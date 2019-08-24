@@ -1,39 +1,29 @@
 # frozen_string_literal: true
 require 'sinatra'
-
-require 'crawler'
-require 'parser'
+require 'anta'
 
 use Rack::Deflater
 
-get '/:num?' do
-  @page = params[:num].to_i
+# Headlines only
+get '/' do
+  # TODO fazer a lista de manchetes
+  redirect '/1'
+end
 
-  if @page < 2
-    @page = 1
-    @next_page = @page + 1
-  else
-    @prev_page = @page - 1
-    @next_page = @page + 1
-  end
 
-  @news_list = NewsListCleaner.clean(
-    WebCrawler.crawlAntaNewsList(
-      @page
-    )
-  )
+# Full news by page
+get '/:page_number' do
+  anta = Anta::ByPage.new(params[:page_number].to_i)
 
-  threads = []
-  @news_list.each do |single_news|
-    threads << Thread.new(single_news) do |news|
-      news[:content] = SingleNewsCleaner.clean(
-        WebCrawler.crawl(
-          news[:full_path]
-        )
-      )
-    end
-  end
-  threads.each { |t| t.join }
+  @next_page = anta.page + 1
+  @prev_page = anta.page - 1 if anta.page > 1
+  @news_list = anta.news_list
 
   erb :main
+end
+
+
+# Single news
+get '/' do
+
 end
