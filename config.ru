@@ -1,4 +1,4 @@
 require './web.rb'
 
-ENV['version'] = "4.4.4"
+ENV['version'] = "4.5"
 run Sinatra::Application

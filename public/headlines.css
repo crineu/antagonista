@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Consolas", "Liberation Mono", "Courier New", monospace;
+}
+
+/* POSITION */
+body {
+  margin:     0 auto;
+  max-width:  860px;
+}
+
+li {
+  list-style:     none;
+  font-variant:   small-caps;
+  padding-top: 6px;
+}
+
+span.date {
+  font-size: small;
+  color: gray;
+}
+
+div.version {
+  position: fixed;
+  bottom:   4px;
+  right:    8px;
+
+  font-size: small;
+  color: lightgray;
+}

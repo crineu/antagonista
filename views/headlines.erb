@@ -1,0 +1,34 @@
+<html>
+<head>
+  <link rel="stylesheet" href="headlines.css" type="text/css">
+
+  <title>O Antagonista</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+
+<!-- JUST HEADLINSE PARTIAL -->
+  <ul>
+    <% @headlines.each do |headline| %>
+      <li class="header">
+        <span class="date"><%= headline[:date] %></span>
+        <a href=<%= headline[:full_path] %> target="_blank">
+          <%= headline[:title] %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+<!-- JUST HEADLINSE PARTIAL -->
+
+
+  <%= @nav %>
+
+
+  <div class="version">
+    <%= ENV['version'] %>
+    <%= " - #{ENV['HEROKU_RELEASE_VERSION']}" if ENV['HEROKU_RELEASE_VERSION'] %>
+  </div>
+
+</body>
+</html>

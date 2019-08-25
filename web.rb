@@ -6,8 +6,9 @@ use Rack::Deflater
 
 # Headlines only
 get '/' do
-  # TODO fazer a lista de manchetes
-  redirect '/1'
+  @headlines = Anta::Headlines.new.list
+
+  erb :headlines
 end
 
 
@@ -17,9 +18,9 @@ get '/:page_number' do
 
   @next_page = anta.page + 1
   @prev_page = anta.page - 1 if anta.page > 1
-  @news_list = anta.news_list
+  @news_list = anta.list
 
-  erb :main
+  erb :news
 end
 
 

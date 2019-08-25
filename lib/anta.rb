@@ -4,6 +4,7 @@ require 'crawler'
 
 module Anta
 
+  # Complete news of a single page
   class ByPage
     attr_reader :page
 
@@ -12,15 +13,15 @@ module Anta
       @page = 1 if @page < 2
     end
 
-    def news_list
-      news_list = Cleaner::NewsList.clean(
+    def list
+      📰 = Cleaner::NewsList.clean(
         Crawler::Web.crawlAntaNewsList(
           @page
         )
       )
 
       pool = []
-      news_list.each do |single_news|
+      📰.each do |single_news|
         pool << Thread.new(single_news) do |news|
           news[:content] = Cleaner::SingleNews.clean(
             Crawler::Web.crawl(
@@ -31,7 +32,36 @@ module Anta
       end
       pool.each(&:join)
 
-      news_list.reverse
+      📰.reverse
+    end
+  end
+
+
+  # Just the headlines of many pages
+  class Headlines
+    attr_reader :first, :pages
+
+    def initialize(first: 1, pages: 10)
+      @first = first
+      @pages = pages
+    end
+
+    def list
+      📰 = []
+      🏃 = []
+      (@first...(@first + @pages)).each do |single_page|
+        🏃 << Thread.new(single_page) do |page|
+
+        📰 << Cleaner::NewsList.clean(
+          Crawler::Web.crawlAntaNewsList(
+            page
+          )
+        )
+
+        end
+      end
+      🏃.each(&:join)
+      📰.flatten.sort { |a,b| b[:date] <=> a[:date] }
     end
   end
 
