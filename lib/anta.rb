@@ -32,7 +32,9 @@ module Anta
       end
       pool.each(&:join)
 
-      📰.reverse
+      📰
+        .reject { |single_news| single_news[:content] == false }
+        .reverse
     end
   end
 
