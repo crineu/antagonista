@@ -59,6 +59,24 @@ RSpec.describe Cleaner::SingleNews do
     )
   end
 
+  it 'clean notícia 3' do
+    expect(
+      Cleaner::SingleNews.clean(
+        Crawler::File.crawl(
+          File.expand_path('video__braga_netto_um_militar_na_casa_civil.html', __dir__)
+        )
+      )
+    ).to eq(
+      [
+        'Nesta terça-feira, o general Walter Braga Netto tomou posse como novo ministro da Casa Civil.',
+        'Segundo o presidente Bolsonaro, o general “é quase unanimidade, um homem inteligente,'\
+        ' organizador e disciplinador”.',
+        'O Antagonista+ preparou um vídeo com um breve perfil do mais novo ministro do governo Bolsonaro.',
+        'Confira:'
+      ]
+    )
+  end
+
   it 'clean notícia com tweet' do
     expect(
       Cleaner::SingleNews.clean(
@@ -89,7 +107,14 @@ RSpec.describe Cleaner::SingleNews do
           File.expand_path('tv__resumao-antagonista-pimenta-na-lava-jato.html', __dir__)
         )
       )
-    ).to be_falsey  # nil or false
+    ).to eq(
+      [
+        "Felipe Moura Brasil resume a semana em vídeo.",
+        "Assista."
+      ]
+    )
+
+
   end
 
   it '/wrong/path returns false' do
