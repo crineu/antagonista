@@ -28,7 +28,7 @@ module Cleaner
   module SingleNews
     def self.clean(bloated_html)
       bloated_html
-        .at_xpath('//div[@id="entry-text-post"]')    # carrega conteúdo da notícia
+        .at_xpath('//div[contains(@class, "entry-content")]')  # carrega conteúdo da notícia
         .children
         .select { |e| e.class == Oga::XML::Element } # filtra apenas elementos
         .select { |e| e.name  == "p"               } # do tipo "<p></p>"
