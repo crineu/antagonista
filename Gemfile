@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby '~> 2.5.7'
 
-gem 'rack',    '~> 2.0.8'
+gem 'rack',    '~> 2.1.4'
 gem 'sinatra', '~> 2'
 gem 'oga',     '~> 2.14'
 gem 'puma',    '~> 4.3'
